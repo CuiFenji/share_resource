@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="极锐光影资源分享站 — 教程中心，从零到精通">
+  <title>教程中心 — 极锐光影</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ========== 教程页特有样式 ========== */
+
+    /* ---- 页面标题区 ---- */
+    .tutorials-hero {
+      padding-top: 120px;
+      padding-bottom: var(--space-xl);
+      text-align: center;
+      background: var(--color-bg-alt);
+    }
+
+    .tutorials-hero h1 {
+      font: var(--text-h2);
+      margin-bottom: var(--space-sm);
+    }
+
+    .tutorials-hero p {
+      font-size: 18px;
+      color: var(--color-text-secondary);
+    }
+
+    /* ---- 教程分类标签 ---- */
+    .category-filters {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-sm);
+      margin: var(--space-lg) 0;
+      flex-wrap: wrap;
+    }
+
+    .category-btn {
+      padding: 8px 20px;
+      border: 1px solid var(--color-border);
+      border-radius: 50px;
+      background: var(--color-white);
+      color: var(--color-text);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all var(--transition-fast);
+      font-family: var(--font-family);
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+      background: var(--color-primary);
+      color: var(--color-white);
+      border-color: var(--color-primary);
+    }
+
+    /* ---- 教程卡片网格 ---- */
+    .tutorials-section {
+      padding: var(--space-md) var(--space-md) var(--space-2xl);
+    }
+
+    .tutorials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .tutorial-card {
+      padding: var(--space-lg);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .tutorial-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .tutorial-card-icon {
+      font-size: 48px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--color-primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tutorial-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--color-text);
+      margin: 0;
+    }
+
+    .tutorial-card-summary {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .tutorial-card-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .tutorial-card-meta .tag {
+      font-size: 11px;
+      padding: 1px 8px;
+    }
+
+    .tutorial-card-date {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+    }
+
+    .tutorial-card .btn {
+      margin-top: auto;
+    }
+
+    /* ---- 响应式 ---- */
+    @media (max-width: 900px) {
+      .tutorials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .tutorials-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== 导航栏 ==================== -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">
+      <span class="brand-icon">🎬</span>
+      <span>极锐光影</span>
+    </a>
+    <ul class="navbar-links">
+      <li><a href="index.html">主页</a></li>
+      <li><a href="resources.html">资源</a></li>
+      <li><a href="tutorials.html">教程</a></li>
+      <li><a href="about.html">关于我们</a></li>
+      <li><a href="feedback.html">反馈问题</a></li>
+    </ul>
+  </nav>
+
+  <!-- ==================== 页面标题 ==================== -->
+  <section class="tutorials-hero fade-in-up">
+    <div class="container">
+      <h1>📖 教程中心</h1>
+      <p>从入门到精通，一步步教你掌握影视制作与 UP 主创作技能</p>
+      <div class="divider"></div>
+    </div>
+  </section>
+
+  <!-- ==================== 教程内容 / 占位 ==================== -->
+  <div id="tutorialsContent" style="display:none;">
+  <!-- ==================== 分类筛选 ==================== -->
+  <div class="category-filters fade-in-up delay-1">
+    <button class="category-btn active" data-filter="全部" onclick="filterTutorials('全部')">全部</button>
+    <button class="category-btn" data-filter="剪辑" onclick="filterTutorials('剪辑')">✂️ 剪辑</button>
+    <button class="category-btn" data-filter="调色" onclick="filterTutorials('调色')">🌈 调色</button>
+    <button class="category-btn" data-filter="创作" onclick="filterTutorials('创作')">💡 创作</button>
+    <button class="category-btn" data-filter="音频" onclick="filterTutorials('音频')">🎧 音频</button>
+    <button class="category-btn" data-filter="字幕" onclick="filterTutorials('字幕')">✨ 字幕</button>
+  </div>
+
+  <!-- ==================== 教程列表 ==================== -->
+  <section class="tutorials-section">
+    <div class="container">
+      <div class="tutorials-grid" id="tutorialsGrid">
+        <!-- 由 JS 动态渲染 -->
+      </div>
+    </div>
+  </section>
+  </div><!-- /tutorialsContent -->
+
+  <!-- 占位：教程未开放 -->
+  <div id="tutorialsEmpty" style="display:none; text-align:center; padding: var(--space-2xl) var(--space-md);">
+    <div style="font-size:64px;margin-bottom:var(--space-md);">📭</div>
+    <h2 style="font-size:22px;color:var(--color-text);margin-bottom:var(--space-xs);">空空如也</h2>
+    <p style="color:var(--color-text-secondary);">教程内容暂未开放，敬请期待</p>
+  </div>
+
+  <!-- ==================== Footer ==================== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <ul class="footer-links">
+        <li><a href="index.html">主页</a></li>
+        <li><a href="resources.html">资源</a></li>
+        <li><a href="tutorials.html">教程</a></li>
+        <li><a href="about.html">关于我们</a></li>
+      <li><a href="feedback.html">反馈问题</a></li>
+      </ul>
+      <p class="footer-copyright">
+        © 2026 极锐光影 · 资源分享站 — 本站资源仅供学习交流，请于下载后 24 小时内删除
+      </p>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <button class="back-to-top" id="backToTop" title="回到顶部">↑</button>
+
+  <!-- 脚本 -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    /* ===== 渲染教程卡片 ===== */
+    function renderTutorials(filter) {
+      var grid = document.getElementById('tutorialsGrid');
+      if (!grid || typeof tutorials === 'undefined') return;
+
+      // 过滤
+      var list = tutorials;
+      if (filter && filter !== '全部') {
+        list = tutorials.filter(function(t) { return t.category === filter; });
+      }
+
+      // 难度标签样式
+      function diffClass(d) {
+        if (d === '入门') return 'tag';
+        if (d === '进阶') return 'tag tag-outline';
+        return 'tag tag-outline';
+      }
+
+      var html = '';
+      list.forEach(function(item, idx) {
+        html +=
+          '<div class="tutorial-card card fade-in-up" style="transition-delay:' + (idx * 0.08) + 's">' +
+            '<div class="tutorial-card-icon">' + item.icon + '</div>' +
+            '<h3>' + item.title + '</h3>' +
+            '<p class="tutorial-card-summary">' + item.summary + '</p>' +
+            '<div class="tutorial-card-meta">' +
+              '<span class="' + diffClass(item.difficulty) + '">' + item.difficulty + '</span>' +
+              '<span class="tutorial-card-date">📅 ' + item.date + '</span>' +
+            '</div>' +
+            '<a href="' + item.link + '" class="btn btn-primary">阅读教程 →</a>' +
+          '</div>';
+      });
+
+      if (list.length === 0) {
+        html = '<div style="text-align:center;padding:40px;color:var(--color-text-secondary);grid-column:1/-1;">该分类暂无教程</div>';
+      }
+
+      grid.innerHTML = html;
+      if (typeof refreshFadeIn === 'function') refreshFadeIn();
+    }
+
+    /* 分类筛选 */
+    function filterTutorials(cat) {
+      // 更新按钮状态
+      document.querySelectorAll('.category-btn').forEach(function(btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-filter') === cat);
+      });
+      renderTutorials(cat);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // 检查后台是否开启了教程可见
+      if (localStorage.getItem('admin_tut_visible_v3') === '0') {
+        document.getElementById('tutorialsEmpty').style.display = '';
+        return;
+      }
+      document.getElementById('tutorialsContent').style.display = '';
+      renderTutorials('全部');
+    });
+  </script>
+</body>
+</html>

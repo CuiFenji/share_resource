@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="极锐光影资源分享站 — 反馈问题">
+  <title>反馈问题 — 极锐光影</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .feedback-page {
+      padding-top: 120px;
+      padding-bottom: var(--space-2xl);
+      background: var(--color-bg);
+      min-height: 100vh;
+    }
+
+    .feedback-container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    .feedback-hero {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .feedback-hero h1 {
+      font: var(--text-h2);
+      margin-bottom: var(--space-sm);
+    }
+
+    .feedback-hero p {
+      font-size: 16px;
+      color: var(--color-text-secondary);
+    }
+
+    /* 表单卡片 */
+    .feedback-form-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-card);
+      padding: var(--space-lg);
+    }
+
+    .form-group {
+      margin-bottom: var(--space-md);
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 6px;
+    }
+
+    .form-group label .required {
+      color: #EF4444;
+      margin-left: 2px;
+    }
+
+    .form-group select,
+    .form-group textarea,
+    .form-group input {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 15px;
+      font-family: var(--font-family);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      outline: none;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+      background: var(--color-white);
+      color: var(--color-text);
+    }
+
+    .form-group select:focus,
+    .form-group textarea:focus,
+    .form-group input:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+      line-height: 1.6;
+    }
+
+    .form-hint {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      margin-top: 4px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: var(--font-family);
+      background: var(--color-primary);
+      color: var(--color-white);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      margin-top: var(--space-sm);
+    }
+
+    .btn-submit:hover {
+      background: var(--color-primary-hover);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* 提交成功 */
+    .submit-success {
+      display: none;
+      text-align: center;
+      padding: var(--space-xl) 0;
+    }
+
+    .submit-success.show {
+      display: block;
+    }
+
+    .submit-success .success-icon {
+      font-size: 56px;
+      margin-bottom: var(--space-sm);
+    }
+
+    .submit-success h2 {
+      font-size: 22px;
+      margin-bottom: var(--space-xs);
+    }
+
+    .submit-success p {
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-lg);
+    }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .feedback-form-card {
+        padding: var(--space-md);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== 导航栏 ==================== -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">
+      <span class="brand-icon">🎬</span>
+      <span>极锐光影</span>
+    </a>
+    <ul class="navbar-links">
+      <li><a href="index.html">主页</a></li>
+      <li><a href="resources.html">资源</a></li>
+      <li><a href="tutorials.html">教程</a></li>
+      <li><a href="about.html">关于我们</a></li>
+      <li><a href="feedback.html">反馈问题</a></li>
+    </ul>
+  </nav>
+
+  <!-- ==================== 反馈表单 ==================== -->
+  <section class="feedback-page">
+    <div class="feedback-container">
+
+      <div class="feedback-hero fade-in-up">
+        <h1>💬 反馈问题</h1>
+        <p>遇到问题或有建议？请告诉我们，我们会尽快处理</p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="feedback-form-card fade-in-up delay-1" id="feedbackForm">
+        <div class="form-group">
+          <label>问题类型 <span class="required">*</span></label>
+          <select id="issueType">
+            <option value="">请选择问题类型</option>
+            <option value="link">下载链接失效</option>
+            <option value="quality">资源画质/音质问题</option>
+            <option value="subtitle">字幕错误/不同步</option>
+            <option value="resource_request">我想要该影片资源</option>
+            <option value="suggestion">功能建议</option>
+            <option value="bug">网站Bug</option>
+            <option value="other">其他问题</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>问题描述 <span class="required">*</span></label>
+          <textarea id="issueDesc" placeholder="请详细描述你遇到的问题或建议..."></textarea>
+          <div class="form-hint">请尽量详细描述，方便我们快速定位和处理</div>
+        </div>
+
+        <div class="form-group">
+          <label>联系方式（选填）</label>
+          <input type="text" id="issueContact" placeholder="QQ号 / 微信号 / 邮箱，方便我们回复你">
+        </div>
+
+        <button class="btn-submit" onclick="submitFeedback()">📩 提交反馈</button>
+      </div>
+
+      <!-- 提交成功 -->
+      <div class="submit-success" id="submitSuccess">
+        <div class="success-icon">✅</div>
+        <h2>反馈提交成功！</h2>
+        <p>感谢你的反馈，我们会尽快查看并处理</p>
+        <a href="resources.html" class="btn btn-primary">返回资源列表</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== Footer ==================== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <ul class="footer-links">
+        <li><a href="index.html">主页</a></li>
+        <li><a href="resources.html">资源</a></li>
+        <li><a href="tutorials.html">教程</a></li>
+        <li><a href="about.html">关于我们</a></li>
+        <li><a href="feedback.html">反馈问题</a></li>
+      </ul>
+      <p class="footer-copyright">
+        © 2026 极锐光影 · 资源分享站 — 本站资源仅供学习交流，请于下载后 24 小时内删除
+      </p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" title="回到顶部">↑</button>
+
+  <script src="js/main.js"></script>
+  <script>
+    /* 页面加载：读取 URL 参数自动勾选问题类型 */
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var presetType = params.get('type');
+      if (presetType) {
+        var select = document.getElementById('issueType');
+        if (select) {
+          // 等待 DOM 渲染后设置
+          for (var i = 0; i < select.options.length; i++) {
+            if (select.options[i].value === presetType) {
+              select.selectedIndex = i;
+              break;
+            }
+          }
+        }
+        // 如果是资源请求，调整描述框提示
+        if (presetType === 'resource_request') {
+          var desc = document.getElementById('issueDesc');
+          if (desc) desc.placeholder = '请告诉我们你想要什么影片资源...';
+        }
+      }
+    })();
+
+    function submitFeedback() {
+      var type = document.getElementById('issueType').value;
+      var desc = document.getElementById('issueDesc').value.trim();
+
+      if (!type) { alert('请选择问题类型'); return; }
+      if (!desc) { alert('请填写问题描述'); return; }
+
+      // 显示成功页（纯前端演示；接入后端时可改为真实提交）
+      document.getElementById('feedbackForm').style.display = 'none';
+      document.getElementById('submitSuccess').classList.add('show');
+    }
+  </script>
+</body>
+</html>

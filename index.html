@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="极锐光影资源分享站 — 发现精彩影视，分享无限乐趣">
+  <title>极锐光影 · 资源分享站</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ========== 主页特有样式 ========== */
+
+    /* ---- Hero 全屏区 ---- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px var(--space-md) var(--space-2xl);
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, #F8FAFC 0%, #EFF6FF 50%, #FFFFFF 100%);
+    }
+
+    /* 背景装饰圆 */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
+      top: -200px;
+      right: -200px;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,0.04) 0%, transparent 70%);
+      bottom: 100px;
+      left: -100px;
+      pointer-events: none;
+    }
+
+    .hero-title {
+      font: var(--text-h1);
+      color: var(--color-text);
+      margin-bottom: var(--space-sm);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-title .highlight {
+      color: var(--color-primary);
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-xl);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ====== 封面滚动轮播区 ====== */
+    .hero-carousel-wrapper {
+      width: 100%;
+      max-width: var(--max-width);
+      position: relative;
+      z-index: 1;
+      margin-bottom: var(--space-2xl);
+      padding: 20px 0;
+      overflow: hidden;
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 5%,
+        black 95%,
+        transparent 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 5%,
+        black 95%,
+        transparent 100%
+      );
+    }
+
+    /* 第一行：向右滚动 */
+    .hero-carousel-track {
+      display: flex;
+      gap: var(--space-md);
+      width: max-content;
+      animation: scrollLeft 80s linear infinite;
+    }
+
+    /* 第二行：向左滚动（反向，错位） */
+    .hero-carousel-track.reverse {
+      animation: scrollRight 80s linear infinite;
+      margin-top: var(--space-md);
+    }
+
+    .hero-cover {
+      flex-shrink: 0;
+      width: 140px;
+      height: 200px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      box-shadow: var(--shadow-hover);
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+      cursor: pointer;
+      background: var(--color-border);
+    }
+
+    .hero-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-cover:hover {
+      transform: translateY(-8px) scale(1.08);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      z-index: 10;
+      position: relative;
+    }
+
+    /* 滚动动画（悬浮不暂停） */
+    @keyframes scrollLeft {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes scrollRight {
+      0%   { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* ---- 向下滚动引导 ---- */
+    .scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-xs);
+      color: var(--color-text-secondary);
+      font-size: 14px;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1s ease 0.8s both;
+      cursor: pointer;
+    }
+
+    .scroll-arrow {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--color-white);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-title { animation: fadeInUp 0.8s ease 0.2s both; }
+    .hero-subtitle { animation: fadeInUp 0.8s ease 0.4s both; }
+    .hero-carousel-wrapper { animation: fadeInUp 0.8s ease 0.6s both; }
+
+    /* ---- 功能介绍区 ---- */
+    .features {
+      padding: var(--space-2xl) var(--space-md);
+      background: var(--color-bg);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      padding: var(--space-lg);
+      text-align: center;
+      background: var(--color-white);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .feature-icon {
+      font-size: 44px;
+      margin-bottom: var(--space-sm);
+    }
+
+    .feature-card h3 {
+      font: var(--text-h3);
+      margin-bottom: var(--space-xs);
+    }
+
+    .feature-card p {
+      color: var(--color-text-secondary);
+      font-size: 14px;
+      margin-bottom: var(--space-md);
+      min-height: 40px;
+    }
+
+    /* ---- 响应式 ---- */
+    @media (max-width: 768px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+      }
+
+      .hero-cover {
+        width: 100px;
+        height: 145px;
+      }
+
+      .hero {
+        padding: 80px var(--space-sm) var(--space-md);
+      }
+
+      .hero-carousel-track {
+        gap: var(--space-sm);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== 导航栏 ==================== -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">
+      <span class="brand-icon">🎬</span>
+      <span>极锐光影</span>
+    </a>
+    <ul class="navbar-links">
+      <li><a href="index.html">主页</a></li>
+      <li><a href="resources.html">资源</a></li>
+      <li><a href="tutorials.html">教程</a></li>
+      <li><a href="about.html">关于我们</a></li>
+      <li><a href="feedback.html">反馈问题</a></li>
+    </ul>
+  </nav>
+
+  <!-- ==================== Hero 全屏区 ==================== -->
+  <section class="hero">
+    <h1 class="hero-title">
+      🎬 极锐光影 <span class="highlight">·</span> 资源分享站
+    </h1>
+    <p class="hero-subtitle">发现精彩影视，分享无限乐趣</p>
+
+    <!-- 封面滚动轮播：第一行（向右滚动） -->
+    <div class="hero-carousel-wrapper">
+      <div class="hero-carousel-track" id="carouselTrack1">
+        <!-- JS 动态填充 -->
+      </div>
+      <div class="hero-carousel-track reverse" id="carouselTrack2">
+        <!-- JS 动态填充 -->
+      </div>
+    </div>
+
+    <!-- 向下滚动提示 -->
+    <div class="scroll-hint" onclick="document.querySelector('.features').scrollIntoView({behavior:'smooth'})">
+      <div class="scroll-arrow">↓</div>
+      <span>继续探索</span>
+    </div>
+  </section>
+
+  <!-- ==================== 功能介绍区 ==================== -->
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">✨ 本站功能</h2>
+      <div class="divider"></div>
+      <p style="text-align:center;color:var(--color-text-secondary);margin-bottom:var(--space-xl);margin-top:var(--space-sm);">
+        一个网站，满足你所有资源需求
+      </p>
+
+      <div class="features-grid">
+        <!-- 功能卡片 1：资源中心 -->
+        <div class="feature-card card fade-in-up delay-1">
+          <div class="feature-icon">📚</div>
+          <h3>资源中心</h3>
+          <p>海量影视、软件、游戏资源，每日更新，分类清晰，搜索便捷</p>
+          <a href="resources.html" class="btn btn-primary">进入资源 →</a>
+        </div>
+
+        <!-- 功能卡片 2：教程指南 -->
+        <div class="feature-card card fade-in-up delay-2">
+          <div class="feature-icon">🎓</div>
+          <h3>教程指南</h3>
+          <p>从零到精通的实操教程，涵盖网站搭建、视频剪辑、资源搜索等</p>
+          <a href="tutorials.html" class="btn btn-primary">开始学习 →</a>
+        </div>
+
+        <!-- 功能卡片 3：关于我们 -->
+        <div class="feature-card card fade-in-up delay-3">
+          <div class="feature-icon">ℹ️</div>
+          <h3>关于我们</h3>
+          <p>了解极锐光影的品牌故事、创作理念和分享精神</p>
+          <a href="about.html" class="btn btn-outline">了解更多 →</a>
+        </div>
+
+        <!-- 功能卡片 4：联系交流 -->
+        <div class="feature-card card fade-in-up delay-4">
+          <div class="feature-icon">💬</div>
+          <h3>联系交流</h3>
+          <p>加入社群，与志同道合的影迷交流，获取最新资源动态</p>
+          <a href="about.html#contact" class="btn btn-outline">联系我们 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== Footer ==================== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <ul class="footer-links">
+        <li><a href="index.html">主页</a></li>
+        <li><a href="resources.html">资源</a></li>
+        <li><a href="tutorials.html">教程</a></li>
+        <li><a href="about.html">关于我们</a></li>
+      <li><a href="feedback.html">反馈问题</a></li>
+      </ul>
+      <p class="footer-copyright">
+        © 2026 极锐光影 · 资源分享站 — 本站资源仅供学习交流，请于下载后 24 小时内删除
+      </p>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <button class="back-to-top" id="backToTop" title="回到顶部">↑</button>
+
+  <!-- 脚本 -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    /* ===== 填充封面轮播 ===== */
+    (function() {
+      var track1 = document.getElementById('carouselTrack1');
+      var track2 = document.getElementById('carouselTrack2');
+
+      if (!track1 || !track2 || typeof resources === 'undefined') return;
+
+      // 生成封面 HTML
+      function buildCoverHTML(item) {
+        return '<div class="hero-cover" title="' + item.title + '">' +
+          '<img src="' + item.cover + '" alt="' + item.title + '" loading="lazy" onerror="this.style.display=\'none\'">' +
+        '</div>';
+      }
+
+      // 只取影视类资源（排除软件），生成两遍实现无缝滚动
+      var movieResources = resources.filter(function(item) {
+        return item.type === '电影' || item.type === '剧集';
+      });
+      var coversHTML = movieResources.map(buildCoverHTML).join('');
+      // 每行 = 原始 + 副本 = 无缝循环
+      var doubledHTML = coversHTML + coversHTML;
+
+      track1.innerHTML = doubledHTML;
+      track2.innerHTML = doubledHTML;
+
+      // 第二行偏移（错位排列，视觉更丰富）
+      // 把第二行的图片顺序反转，形成交错视觉
+      var reversed = movieResources.slice().reverse();
+      var reversedHTML = reversed.map(buildCoverHTML).join('');
+      var doubledReversed = reversedHTML + reversedHTML;
+      track2.innerHTML = doubledReversed;
+    })();
+  </script>
+</body>
+</html>

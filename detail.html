@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="极锐光影资源分享站 — 资源详情">
+  <title>资源详情 — 极锐光影</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ========== 详情页样式 ========== */
+
+    .detail-page {
+      padding-top: 90px;
+      padding-bottom: 120px;
+      background: var(--color-bg);
+      min-height: 100vh;
+    }
+
+    .detail-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    /* 返回按钮 */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      margin-bottom: var(--space-sm);
+      font-family: var(--font-family);
+    }
+
+    .back-link:hover {
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+      background: var(--color-primary-light);
+    }
+
+    /* ---- 顶部：封面 + 基本信息 ---- */
+    .detail-hero {
+      display: flex;
+      gap: var(--space-xl);
+      align-items: flex-start;
+      margin-bottom: var(--space-lg);
+      padding-top: var(--space-lg);
+    }
+
+    .detail-cover {
+      flex-shrink: 0;
+      width: 260px;
+      height: 355px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-hover);
+      background: var(--color-bg-alt);
+    }
+
+    .detail-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .detail-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .detail-info h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: var(--space-sm);
+      line-height: 1.3;
+    }
+
+    .detail-tags {
+      display: flex;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-sm);
+    }
+
+    .detail-date {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-sm);
+    }
+
+    /* 简介：纯文本，不用卡片 */
+    .detail-desc {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-md);
+    }
+
+    /* ---- 片段素材 ---- */
+    .clips-section {
+      margin-bottom: 0;
+    }
+
+    .clips-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: var(--space-xs);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .clips-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    .clip-tag {
+      padding: 5px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-primary);
+      background: var(--color-primary-light);
+      border-radius: 20px;
+      border: 1px solid rgba(37, 99, 235, 0.2);
+    }
+
+    /* ---- 技术规格（片段素材下方，内嵌在信息栏）---- */
+    .specs-card {
+      margin-top: var(--space-md);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-sm);
+    }
+
+    .spec-item {
+      text-align: center;
+      padding: 4px 0;
+    }
+
+    .spec-icon {
+      font-size: 18px;
+      margin-bottom: 2px;
+    }
+
+    .spec-label {
+      font-size: 11px;
+      color: var(--color-text-secondary);
+      margin-bottom: 2px;
+    }
+
+    .spec-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    /* ---- 下载区 ---- */
+    .download-section {
+      border-top: 2px solid var(--color-border);
+      padding-top: var(--space-lg);
+    }
+
+    .download-section h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: var(--space-md);
+      color: var(--color-text);
+      text-align: center;
+    }
+
+    /* 选项卡按钮 */
+    .tab-buttons {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .tab-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: 12px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: var(--font-family);
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: var(--color-white);
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-normal);
+    }
+
+    .tab-btn:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    .tab-btn.active {
+      background: var(--color-primary);
+      color: var(--color-white);
+      border-color: var(--color-primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .tab-icon {
+      font-size: 20px;
+    }
+
+    /* 下载面板：链接 + 复制按钮 */
+    .download-panel {
+      padding: var(--space-lg);
+      background: var(--color-primary-light);
+      border: 1px solid var(--color-primary);
+      border-radius: var(--radius-md);
+      transition: opacity var(--transition-normal);
+    }
+
+    .download-link-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .download-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text);
+      flex-shrink: 0;
+    }
+
+    .download-link-text {
+      flex: 1;
+      font-size: 14px;
+      color: var(--color-primary);
+      word-break: break-all;
+      font-family: "Consolas", "Courier New", monospace;
+      background: var(--color-white);
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .btn-copy-link {
+      flex-shrink: 0;
+      padding: 10px 22px;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: var(--font-family);
+      background: var(--color-white);
+      color: var(--color-primary);
+      border: 1px solid var(--color-primary);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-copy-link:hover {
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    .btn-copy-link.copied {
+      background: var(--color-success);
+      color: var(--color-white);
+      border-color: var(--color-success);
+    }
+
+    /* ---- 未找到 ---- */
+    .not-found {
+      text-align: center;
+      padding: var(--space-2xl) var(--space-md);
+    }
+
+    .not-found-icon {
+      font-size: 64px;
+      margin-bottom: var(--space-md);
+    }
+
+    .not-found h2 {
+      font-size: 24px;
+      margin-bottom: var(--space-sm);
+    }
+
+    .not-found p {
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-lg);
+    }
+
+    /* ---- 响应式 ---- */
+    @media (max-width: 768px) {
+      .detail-hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .detail-cover {
+        width: 200px;
+        height: 275px;
+      }
+
+      .detail-info h1 {
+        font-size: 24px;
+      }
+
+      .detail-tags,
+      .clips-list {
+        justify-content: center;
+      }
+
+      .specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .tab-btn {
+        padding: 10px 18px;
+        font-size: 14px;
+      }
+
+      .download-link-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .download-link-text {
+        white-space: normal;
+        word-break: break-all;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== 导航栏 ==================== -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">
+      <span class="brand-icon">🎬</span>
+      <span>极锐光影</span>
+    </a>
+    <ul class="navbar-links">
+      <li><a href="index.html">主页</a></li>
+      <li><a href="resources.html">资源</a></li>
+      <li><a href="tutorials.html">教程</a></li>
+      <li><a href="about.html">关于我们</a></li>
+      <li><a href="feedback.html">反馈问题</a></li>
+    </ul>
+  </nav>
+
+  <!-- ==================== 详情内容 ==================== -->
+  <div class="detail-page">
+    <div class="detail-container">
+      <a href="javascript:history.back()" class="back-link fade-in-up">← 返回上一级</a>
+      <div id="detailContent">
+      <!-- 由 JS 动态渲染 -->
+    </div>
+  </div>
+
+  <!-- ==================== Footer ==================== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <ul class="footer-links">
+        <li><a href="index.html">主页</a></li>
+        <li><a href="resources.html">资源</a></li>
+        <li><a href="tutorials.html">教程</a></li>
+        <li><a href="about.html">关于我们</a></li>
+      <li><a href="feedback.html">反馈问题</a></li>
+      </ul>
+      <p class="footer-copyright">
+        © 2026 极锐光影 · 资源分享站 — 本站资源仅供学习交流，请于下载后 24 小时内删除
+      </p>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <button class="back-to-top" id="backToTop" title="回到顶部">↑</button>
+
+  <!-- 脚本 -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+      /* ===== 获取资源 ===== */
+      var params = new URLSearchParams(window.location.search);
+      var resourceId = params.get('id');
+      var container = document.getElementById('detailContent');
+      var resource = null;
+
+
+      if (typeof resources !== 'undefined' && resourceId) {
+        for (var i = 0; i < resources.length; i++) {
+          if (resources[i].id === resourceId) {
+            resource = resources[i];
+            break;
+          }
+        }
+      }
+
+      /* ===== 未找到 ===== */
+      if (!resource) {
+        container.innerHTML =
+          '<div class="not-found">' +
+            '<div class="not-found-icon">😕</div>' +
+            '<h2>资源未找到</h2>' +
+            '<p>你查找的资源不存在或已被移除</p>' +
+            '<a href="resources.html" class="btn btn-primary">← 返回资源列表</a>' +
+          '</div>';
+        document.title = '资源未找到 — 极锐光影';
+        return;
+      }
+
+      /* ===== 渲染页面 ===== */
+      function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+      var r = resource;
+      document.title = esc(r.title) + ' — 极锐光影';
+      var html = '';
+
+      // ——— 封面 + 基本信息 ———
+      html += '<div class="detail-hero fade-in-up delay-1">';
+      html += '  <div class="detail-cover">';
+      html += '    <img src="' + r.cover + '" alt="' + esc(r.title) + '" onerror="this.remove()">';
+      html += '  </div>';
+      html += '  <div class="detail-info">';
+      html += '    <h1>' + esc(r.title) + '</h1>';
+      html += '    <div class="detail-tags">';
+      html += '      <span class="tag">' + esc(r.type) + '</span>';
+      resource.tags.forEach(function(t) {
+        html += '    <span class="tag tag-outline">' + esc(t) + '</span>';
+      });
+      html += '    </div>';
+      html += '    <div class="detail-date">📅 ' + esc(r.date) + '</div>';
+      // 简介：纯文本
+      html += '    <p class="detail-desc">' + esc(r.description) + '</p>';
+      // 片段素材（软件不显示）
+      if (r.clips && r.clips.length > 0 && r.type !== '软件') {
+        html += '    <div class="clips-section">';
+        html += '      <div class="clips-label">🎞️ 片段素材</div>';
+        html += '      <div class="clips-list">';
+        r.clips.forEach(function(c) {
+          html += '        <span class="clip-tag">' + esc(c) + '</span>';
+        });
+        html += '      </div>';
+        html += '    </div>';
+      }
+      // ——— 技术规格（影视/软件显示不同字段）———
+      html += '    <div class="specs-card">';
+      html += '      <div class="specs-grid">';
+      if (r.type === '软件') {
+        html += '        <div class="spec-item"><div class="spec-icon">🔢</div><div class="spec-label">版本</div><div class="spec-value">' + (r.version || '—') + '</div></div>';
+        html += '        <div class="spec-item"><div class="spec-icon">💻</div><div class="spec-label">平台</div><div class="spec-value">' + (r.platform || '—') + '</div></div>';
+        html += '        <div class="spec-item"><div class="spec-icon">🌐</div><div class="spec-label">界面语言</div><div class="spec-value">' + (r.language || '—') + '</div></div>';
+        html += '        <div class="spec-item"><div class="spec-icon">💾</div><div class="spec-label">文件大小</div><div class="spec-value">' + (r.size || '—') + '</div></div>';
+      } else {
+        html += '        <div class="spec-item"><div class="spec-icon">📺</div><div class="spec-label">分辨率</div><div class="spec-value">' + (r.resolution || '—') + '</div></div>';
+        html += '        <div class="spec-item"><div class="spec-icon">💬</div><div class="spec-label">字幕语言</div><div class="spec-value">' + (r.subtitle || '—') + '</div></div>';
+        html += '        <div class="spec-item"><div class="spec-icon">📦</div><div class="spec-label">视频格式</div><div class="spec-value">' + (r.format || '—') + '</div></div>';
+        html += '        <div class="spec-item"><div class="spec-icon">💾</div><div class="spec-label">文件大小</div><div class="spec-value">' + (r.size || '—') + '</div></div>';
+      }
+      html += '      </div>';
+      html += '    </div>';
+      html += '  </div>';
+      html += '</div>';
+
+      // ——— 下载区 ———
+      var downloads = r.downloads || {};
+      var platforms = [
+        { key: 'baidu', name: '百度网盘', icon: '📦' },
+        { key: 'quark', name: '夸克网盘', icon: '☁️' }
+      ];
+
+      html += '<div class="download-section fade-in-up delay-2">';
+      html += '  <h2>🔗 提取链接</h2>';
+      html += '  <div class="tab-buttons" id="tabButtons">';
+      platforms.forEach(function(p, idx) {
+        var cls = idx === 0 ? ' active' : '';
+        html += '    <button class="tab-btn' + cls + '" data-platform="' + p.key + '">';
+        html += '      <span class="tab-icon">' + p.icon + '</span>' + p.name;
+        html += '    </button>';
+      });
+      html += '  </div>';
+      html += '  <div class="download-panel" id="downloadPanel"></div>';
+      html += '</div>';
+
+      container.innerHTML = html;
+      if (typeof refreshFadeIn === 'function') refreshFadeIn();
+
+      /* ===== 下载面板切换 ===== */
+      var currentPlatform = 'baidu';
+
+      function renderPanel(key) {
+        var panel = document.getElementById('downloadPanel');
+        if (!panel) return;
+        var data = downloads[key];
+
+        if (!data || !data.link) {
+          panel.innerHTML = '<p style="text-align:center;color:var(--color-text-secondary);padding:var(--space-md);">该网盘资源暂未上架，请切换其他网盘</p>';
+          return;
+        }
+
+        panel.innerHTML =
+          '<div class="download-link-row">' +
+            '<span class="download-label">🔗 链接</span>' +
+            '<span class="download-link-text" id="linkText">' + data.link + '</span>' +
+            '<button class="btn-copy-link" onclick="copyLink(\'' + data.link + '\', this)">📋 复制链接</button>' +
+          '</div>';
+      }
+
+      renderPanel(currentPlatform);
+
+      document.querySelectorAll('#tabButtons .tab-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var p = this.getAttribute('data-platform');
+          if (p === currentPlatform) return;
+          document.querySelectorAll('#tabButtons .tab-btn').forEach(function(b) { b.classList.remove('active'); });
+          this.classList.add('active');
+          currentPlatform = p;
+          renderPanel(p);
+        });
+      });
+
+    });
+
+    /* ===== 复制链接（全局函数）===== */
+    function copyLink(text, btnEl) {
+      if (!text) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() { showDone(btnEl); });
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); showDone(btnEl); } catch(e) {}
+        document.body.removeChild(ta);
+      }
+    }
+
+    function showDone(btnEl) {
+      var orig = btnEl.innerHTML;
+      btnEl.classList.add('copied');
+      btnEl.innerHTML = '✅ 已复制';
+      setTimeout(function() {
+        btnEl.classList.remove('copied');
+        btnEl.innerHTML = orig;
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

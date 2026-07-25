@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>后台管理 — 极锐光影</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { background: var(--color-bg-alt); min-height: 100vh; font-family: var(--font-family); }
+
+    .login-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: var(--space-md); }
+    .login-card { background: var(--color-white); border-radius: var(--radius-lg); box-shadow: var(--shadow-hover); padding: var(--space-2xl) var(--space-xl); max-width: 400px; width: 100%; text-align: center; }
+    .login-card h1 { font-size: 28px; margin-bottom: 4px; }
+    .login-card .sub { color: var(--color-text-secondary); margin-bottom: var(--space-lg); font-size: 14px; }
+    .login-card input { width: 100%; padding: 12px 16px; font-size: 16px; font-family: var(--font-family); border: 2px solid var(--color-border); border-radius: var(--radius-sm); outline: none; margin-bottom: var(--space-md); text-align: center; }
+    .login-card input:focus { border-color: var(--color-primary); }
+    .login-err { color: #EF4444; font-size: 14px; display: none; }
+    .btn-full { width: 100%; padding: 12px; font-size: 15px; font-weight: 600; font-family: var(--font-family); background: var(--color-primary); color: #fff; border: none; border-radius: var(--radius-sm); cursor: pointer; }
+    .btn-full:hover { background: var(--color-primary-hover); }
+
+    .admin-page { display: none; }
+    .admin-page.show { display: block; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-sm); padding: 10px var(--space-md); background: var(--color-white); border-bottom: 1px solid var(--color-border); position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-nav); }
+    .topbar h2 { font-size: 18px; margin: 0; }
+
+    .btn-sm { padding: 7px 14px; font-size: 13px; font-weight: 500; font-family: var(--font-family); border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-white); color: var(--color-text); cursor: pointer; transition: all var(--transition-fast); }
+    .btn-sm:hover { border-color: var(--color-primary); color: var(--color-primary); }
+    .btn-sm.pri { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+    .btn-sm.danger:hover { border-color: #EF4444; color: #EF4444; background: #FEF2F2; }
+
+    .tabs { display: flex; gap: 0; padding: var(--space-md) var(--space-md) 0; max-width: var(--max-width); margin: 0 auto; flex-wrap: wrap; }
+    .tab { padding: 9px 18px; font-size: 14px; font-weight: 600; font-family: var(--font-family); border: 1px solid var(--color-border); border-bottom: none; background: var(--color-bg-alt); color: var(--color-text-secondary); border-radius: var(--radius-sm) var(--radius-sm) 0 0; cursor: pointer; }
+    .tab.active { background: var(--color-white); color: var(--color-primary); }
+
+    .content { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-md) var(--space-2xl); }
+    .table-wrap { background: var(--color-white); border: 1px solid var(--color-border); border-radius: 0 0 var(--radius-md) var(--radius-md); overflow: hidden; }
+    .toolbar { display: flex; align-items: center; justify-content: space-between; padding: 10px var(--space-md); border-bottom: 1px solid var(--color-border); }
+    .count { font-size: 13px; color: var(--color-text-secondary); }
+
+    table { width: 100%; border-collapse: collapse; }
+    th { text-align: left; padding: 8px var(--space-md); font-size: 12px; color: var(--color-text-secondary); text-transform: uppercase; border-bottom: 1px solid var(--color-border); background: var(--color-bg-alt); }
+    td { padding: 8px var(--space-md); font-size: 14px; border-bottom: 1px solid var(--color-border); }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--color-primary-light); }
+    .td-title { font-weight: 500; max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .btn-icon { padding: 3px 8px; font-size: 13px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-white); cursor: pointer; font-family: var(--font-family); margin-right: 4px; }
+    .btn-icon:hover { border-color: var(--color-primary); color: var(--color-primary); }
+    .btn-icon.del:hover { border-color: #EF4444; color: #EF4444; background: #FEF2F2; }
+
+    /* 弹窗 — 加宽防重叠 */
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; padding: var(--space-md); }
+    .modal.show { display: flex; }
+    .modal-panel { background: var(--color-white); border-radius: var(--radius-lg); box-shadow: 0 25px 60px rgba(0,0,0,0.25); max-width: 760px; width: 100%; max-height: 88vh; overflow-y: auto; animation: modalIn 0.3s ease; }
+    @keyframes modalIn { from { opacity: 0; transform: translateY(30px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .modal-head { display: flex; align-items: center; justify-content: space-between; padding: var(--space-sm) var(--space-lg); border-bottom: 1px solid var(--color-border); position: sticky; top: 0; background: var(--color-white); z-index: 1; }
+    .modal-head h3 { font-size: 17px; margin: 0; }
+    .modal-close { width: 30px; height: 30px; border-radius: 50%; border: none; background: var(--color-bg-alt); font-size: 16px; cursor: pointer; }
+    .modal-close:hover { background: #FEE2E2; color: #EF4444; }
+    .modal-body { padding: var(--space-sm) var(--space-lg) var(--space-md); }
+    .modal-body .fg { margin-bottom: 14px; }
+    .modal-body label { display: block; font-size: 14px; font-weight: 600; color: var(--color-text); margin-bottom: 3px; }
+    .modal-body label .req { color: #EF4444; }
+    .modal-body input, .modal-body select, .modal-body textarea { width: 100%; padding: 8px 10px; font-size: 14px; font-family: var(--font-family); border: 1px solid var(--color-border); border-radius: var(--radius-sm); outline: none; background: var(--color-white); color: var(--color-text); }
+    .modal-body input:focus, .modal-body select:focus, .modal-body textarea:focus { border-color: var(--color-primary); }
+    .modal-body textarea { resize: vertical; min-height: 55px; }
+    .fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); }
+    .fg-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--space-sm); }
+    .divider { font-size: 12px; font-weight: 700; color: var(--color-text-secondary); text-transform: uppercase; margin: 28px 0 20px; padding-top: 12px; border-top: 2px solid var(--color-primary); clear: both; display: block; width: 120px; }
+
+    /* 预设标签 */
+    .preset-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+    .preset-tag { padding: 2px 9px; font-size: 11px; border: 1px dashed var(--color-border); border-radius: 20px; background: var(--color-bg-alt); color: var(--color-text-secondary); cursor: pointer; font-family: var(--font-family); transition: all var(--transition-fast); }
+    .preset-tag:hover { border-color: var(--color-primary); color: var(--color-primary); background: var(--color-primary-light); }
+
+    .tag-editor { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+    .tag-chip { display: inline-flex; align-items: center; gap: 3px; padding: 3px 10px; font-size: 12px; background: var(--color-primary-light); color: var(--color-primary); border-radius: 20px; }
+    .tag-chip span { cursor: pointer; font-weight: 700; }
+    .tag-chip span:hover { color: #EF4444; }
+    .tag-add { display: flex; gap: 3px; }
+    .tag-add input { width: 100px !important; padding: 4px 8px !important; font-size: 12px !important; }
+    .tag-add button { padding: 4px 10px; font-size: 12px; border: 1px solid var(--color-primary); background: #fff; color: var(--color-primary); border-radius: var(--radius-sm); cursor: pointer; font-family: var(--font-family); }
+
+    /* 封面浏览按钮 */
+    .cover-row { display: flex; gap: 6px; }
+    .cover-row input { flex: 1; }
+
+    .modal-foot { display: flex; justify-content: flex-end; gap: var(--space-sm); padding: var(--space-sm) var(--space-lg) var(--space-md); border-top: 1px solid var(--color-border); margin-top: var(--space-sm); }
+
+    @media (max-width: 768px) {
+      .fg-row, .fg-row3 { grid-template-columns: 1fr; }
+      th:nth-child(3), td:nth-child(3) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-page" id="loginPage">
+    <div class="login-card">
+      <h1>🔒 后台管理</h1>
+      <p class="sub">请输入管理密码进入</p>
+      <input type="password" id="pwd" placeholder="请输入密码" onkeydown="if(event.key==='Enter')login()">
+      <button class="btn-full" onclick="login()">登 录</button>
+      <p class="login-err" id="loginErr">❌ 密码错误</p>
+    </div>
+  </div>
+
+  <div class="admin-page" id="adminPage">
+    <div class="topbar">
+      <h2>🔧 后台管理</h2>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn-sm pri" onclick="exportData()">📥 导出 data.js</button>
+        <button class="btn-sm danger" onclick="resetData()">🔄 恢复默认</button>
+        <button class="btn-sm" onclick="logout()">🚪 退出</button>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-t="movie" onclick="switchTab('movie')">🎬 影视</button>
+      <button class="tab" data-t="software" onclick="switchTab('software')">💻 软件</button>
+      <button class="tab" data-t="tutorial" onclick="switchTab('tutorial')">📖 教程</button>
+      <button class="tab" data-t="banner" onclick="switchTab('banner')">📢 广告栏</button>
+    </div>
+
+    <div class="content">
+      <div class="table-wrap">
+        <div class="toolbar">
+          <button class="btn-sm pri" onclick="openEdit(null)">＋ 新增</button>
+          <input type="text" id="adminSearch" placeholder="🔍 搜索标题或标签..." oninput="renderList()" style="width:200px;padding:6px 10px;font-size:13px;font-family:var(--font-family);border:1px solid var(--color-border);border-radius:var(--radius-sm);outline:none;">
+          <span style="display:flex;align-items:center;gap:12px;">
+            <span class="count" id="rowCount">共 0 条</span>
+            <span id="tutToggle" style="display:none;"><button class="btn-sm" id="tutToggleBtn" onclick="toggleTutorials()">👁️ 教程可见</button></span>
+          </span>
+        </div>
+        <div style="overflow-x:auto;">
+          <table>
+            <thead id="thead"></thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="editModal"><div class="modal-panel" id="modalPanel"></div></div>
+
+  <!-- 隐藏的文件选择器（封面浏览） -->
+  <input type="file" id="coverFilePicker" accept="image/*" style="display:none" onchange="onCoverPicked()">
+
+  <script src="js/data.js"></script>
+  <script>
+    /* ================================================================
+       后台管理系统 v3
+       依赖 data.js：var resources, var tutorials, var ADMIN_PASSWORD
+       ================================================================ */
+
+    /* ----- 1. 数据持久化 ----- */
+    var SK_R = 'admin_res_v3', SK_T = 'admin_tut_v3', SK_B = 'admin_banner_v3';
+
+    // 默认广告栏数据
+    var defaultBanners = [
+      { type: 'announcement', icon: '🎬', title: '极锐光影 · 资源分享站', body: '精选影视素材片段 · 高清画质 · 双语字幕 · 持续更新', subtitle: '本站资源仅供学习交流，所有内容为剪辑后的影视素材片段，非完整原片。请于下载后 24 小时内删除。', bg: 'linear-gradient(135deg, #0D47A1 0%, #1565C0 40%, #1E88E5 100%)' },
+      { type: 'movie', badge: '🔥 典藏推荐', title: '复仇者联盟3：无限战争', description: '灭霸降临！漫威十年布局巅峰之战，IMAX 4K HDR 高码率压制', cover: 'https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/复仇者联盟3.png', link: 'detail.html?id=010702', bg: 'linear-gradient(135deg, #1A237E 0%, #4A148C 100%)', endColor: '#4A148C' },
+      { type: 'movie', badge: '🎬 必看神作', title: '你的名字', description: '新海诚现象级动画神作，穿越时空的身体互换，唯美到极致的纯爱故事', cover: 'https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/你的名字.png', link: 'detail.html?id=010709', bg: 'linear-gradient(135deg, #0D47A1 0%, #6A1B9A 100%)', endColor: '#6A1B9A' }
+    ];
+    var banners = defaultBanners;
+
+    (function() {
+      var r = localStorage.getItem(SK_R);
+      if (r) { try { var a = JSON.parse(r); resources.length = 0; a.forEach(function(x) { resources.push(x); }); } catch(e) {} }
+      var t = localStorage.getItem(SK_T);
+      if (t) { try { var b = JSON.parse(t); tutorials.length = 0; b.forEach(function(x) { tutorials.push(x); }); } catch(e) {} }
+      var bn = localStorage.getItem(SK_B);
+      if (bn) { try { banners = JSON.parse(bn); } catch(e) {} }
+    })();
+
+    function saveR() { localStorage.setItem(SK_R, JSON.stringify(resources)); }
+    function saveT() { localStorage.setItem(SK_T, JSON.stringify(tutorials)); }
+    function saveB() { localStorage.setItem(SK_B, JSON.stringify(banners)); }
+
+    /* ----- 2. 登录 ----- */
+    async function sha256(str) {
+      var buf = new TextEncoder().encode(str);
+      var hash = await crypto.subtle.digest('SHA-256', buf);
+      return Array.from(new Uint8Array(hash)).map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+    }
+    async function login() {
+      var input = document.getElementById('pwd').value;
+      var hash = await sha256(input);
+      if (hash === ADMIN_PASSWORD_HASH) {
+        sessionStorage.setItem('admin_auth', '1');
+        document.getElementById('loginPage').style.display = 'none';
+        document.getElementById('adminPage').classList.add('show');
+        renderList();
+      } else { document.getElementById('loginErr').style.display = 'block'; }
+    }
+    function logout() { sessionStorage.removeItem('admin_auth'); location.reload(); }
+    if (sessionStorage.getItem('admin_auth') === '1') { document.getElementById('loginPage').style.display = 'none'; document.getElementById('adminPage').classList.add('show'); renderList(); }
+
+    /* ----- 3. 选项卡 ----- */
+    var curTab = 'movie';
+    function switchTab(t) {
+      curTab = t;
+      document.querySelectorAll('.tab').forEach(function(el) { el.classList.toggle('active', el.getAttribute('data-t') === t); });
+      // 教程选项卡显示可见性切换
+      document.getElementById('tutToggle').style.display = (t === 'tutorial') ? '' : 'none';
+      if (t === 'tutorial') updateTutToggleBtn();
+      renderList();
+    }
+
+    /* 教程可见性切换 */
+    var TUT_VIS_KEY = 'admin_tut_visible_v3';
+    function isTutVisible() { return localStorage.getItem(TUT_VIS_KEY) !== '0'; }
+    function updateTutToggleBtn() {
+      var btn = document.getElementById('tutToggleBtn');
+      if (btn) btn.textContent = isTutVisible() ? '👁️ 教程可见' : '🚫 教程隐藏';
+    }
+    function toggleTutorials() {
+      localStorage.setItem(TUT_VIS_KEY, isTutVisible() ? '0' : '1');
+      updateTutToggleBtn();
+    }
+
+    function getList() {
+      if (curTab === 'tutorial') return tutorials;
+      if (curTab === 'banner') return banners;
+      return resources.filter(function(r) {
+        if (curTab === 'software') return r.type === '软件';
+        return r.type === '电影' || r.type === '剧集';
+      });
+    }
+
+    /* ----- 4. 列表渲染 ----- */
+    function renderList() {
+      var list = getList();
+
+      // 按日期倒序排列（最新的在前）
+      if (curTab !== 'banner') {
+        list = list.slice().sort(function(a, b) { return b.date.localeCompare(a.date); });
+      }
+
+      // 搜索过滤
+      var searchInput = document.getElementById('adminSearch');
+      if (searchInput && searchInput.value.trim()) {
+        var q = searchInput.value.trim().toLowerCase();
+        list = list.filter(function(item) {
+          var text = (item.title || '') + ' ' + (item.tags || []).join(' ') + ' ' + (item.description || '') + ' ' + (item.type || '') + ' ' + (item.category || '');
+          return text.toLowerCase().indexOf(q) !== -1;
+        });
+      }
+
+      var html = '';
+
+      // 表头
+      if (curTab === 'banner') {
+        document.getElementById('thead').innerHTML = '<tr><th style="width:50px">#</th><th>标题</th><th style="width:90px">类型</th><th style="width:90px">操作</th></tr>';
+      } else {
+        document.getElementById('thead').innerHTML = '<tr><th style="width:50px">ID</th><th>标题</th><th style="width:90px">类型</th><th style="width:90px">日期</th><th style="width:90px">操作</th></tr>';
+      }
+
+      document.getElementById('rowCount').textContent = '共 ' + list.length + ' 条';
+
+      list.forEach(function(item, i) {
+        var typeLabel = curTab === 'banner' ? (item.type === 'announcement' ? '公告' : '电影推荐') : (item.type || item.category || '');
+        var dateCol = curTab === 'banner' ? '' : '<td>' + (item.date || '') + '</td>';
+        var editId = (curTab === 'banner' ? i : ("'" + item.id + "'"));
+        html += '<tr><td>' + (curTab === 'banner' ? (i + 1) : item.id) + '</td><td class="td-title" title="' + esc(item.title) + '">' + esc(item.title) + '</td><td>' + typeLabel + '</td>' + dateCol + '<td class="td-actions"><button class="btn-icon" onclick="openEdit(' + editId + ')">✏️</button><button class="btn-icon del" onclick="del(' + editId + ')">🗑️</button></td></tr>';
+      });
+      if (!list.length) {
+        var colspan = curTab === 'banner' ? 4 : 5;
+        html = '<tr><td colspan="' + colspan + '" style="text-align:center;color:var(--color-text-secondary);padding:32px;">暂无数据</td></tr>';
+      }
+      document.getElementById('tbody').innerHTML = html;
+    }
+
+    function del(id) {
+      if (!confirm('确定删除？')) return;
+      if (curTab === 'tutorial') { var i = findTi(id); if (i >= 0) { tutorials.splice(i, 1); saveT(); } }
+      else if (curTab === 'banner') { banners.splice(id, 1); saveB(); }
+      else { var j = findRi(id); if (j >= 0) { resources.splice(j, 1); saveR(); } }
+      renderList();
+    }
+
+    function findRi(id) { for (var i = 0; i < resources.length; i++) if (resources[i].id === id) return i; return -1; }
+    function findTi(id) { for (var i = 0; i < tutorials.length; i++) if (tutorials[i].id === id) return i; return -1; }
+
+    /* ----- 5. 编辑弹窗 ----- */
+    var _tags = [], _clips = [], _outline = [], _editId = null, _coverFile = null;
+
+    /* 预设标签 */
+    var presetTagsMovie = ['4K', '1080P', '中字', '科幻', '漫威', '动画', '热血', '宫崎骏', '新海诚', '动作', '奇幻', '冒险', '治愈', '反英雄', '忍者', '战斗'];
+    var presetTagsSoftware = ['视频剪辑', '图像处理', '3D建模', '中文版', 'Win/Mac', '开源免费', '专业', 'AI', '调色', '免费'];
+
+    function tagUI(name, arr, presets) {
+      var h = '<div id="tagContainer_' + name + '">';
+      // 预设按钮
+      if (presets && presets.length) {
+        h += '<div class="preset-tags">';
+        presets.forEach(function(p) {
+          if (arr.indexOf(p) === -1) h += '<button type="button" class="preset-tag" onclick="addPresetTag(\'' + name + '\',\'' + esc(p) + '\')">' + p + '</button>';
+        });
+        h += '</div>';
+      }
+      // 已有标签
+      h += '<div class="tag-editor">';
+      arr.forEach(function(t, i) { h += '<span class="tag-chip">' + esc(t) + '<span onclick="rmTag(\'' + name + '\',' + i + ')">×</span></span>'; });
+      // 输入框
+      h += '<span class="tag-add"><input id="ti_' + name + '" placeholder="输入标签" onkeydown="if(event.key===\'Enter\'){event.preventDefault();addTag(\'' + name + '\');}"><button type="button" onclick="addTag(\'' + name + '\')">+</button></span>';
+      h += '</div>';
+      h += '</div>';
+      return h;
+    }
+
+    function openEdit(id) {
+      _editId = id; _coverFile = null;
+      var item = null;
+      var isBanner = curTab === 'banner';
+
+      if (id !== null && !isBanner) {
+        if (curTab === 'tutorial') { var ti = findTi(id); if (ti >= 0) item = tutorials[ti]; }
+        else { var ri = findRi(id); if (ri >= 0) item = resources[ri]; }
+      } else if (isBanner && id !== null && id < banners.length) {
+        item = banners[id];
+      }
+
+      _tags = item ? (item.tags || []).slice() : [];
+      _clips = (item && item.clips) ? item.clips.slice() : [];
+      _outline = (item && item.outline) ? item.outline.slice() : [];
+
+      var isM = curTab === 'movie', isS = curTab === 'software', isTut = curTab === 'tutorial';
+      var title = item ? '编辑' : '新增';
+      var typeLabel = isBanner ? '广告栏' : (isTut ? '教程' : (isS ? '软件资源' : '影视资源'));
+
+      var h = '';
+      h += '<div class="modal-head"><h3>' + title + ' ' + typeLabel + (item && item.id ? ' <span style="color:var(--color-text-secondary);font-weight:400;font-size:13px;">ID: ' + item.id + '</span>' : '') + '</h3><button class="modal-close" onclick="closeEdit()">✕</button></div>';
+      h += '<div class="modal-body">';
+
+      if (isBanner) {
+        /* ====== 广告栏编辑 ====== */
+        h += '<div class="fg"><label>类型</label><select id="f_btype" onchange="toggleBannerFields()"><option value="announcement"' + (item && item.type === 'announcement' ? ' selected' : '') + '>公告页</option><option value="movie"' + (item && item.type === 'movie' ? ' selected' : '') + '>电影推荐</option></select></div>';
+        h += '<div class="fg"><label>标题</label><input id="f_title" value="' + (item ? esc(item.title || '') : '') + '"></div>';
+        h += '<div class="fg" id="fg_bicon"><label>图标 Emoji</label><input id="f_icon" value="' + (item ? esc(item.icon || '') : '') + '"></div>';
+        h += '<div class="fg" id="fg_bbody"><label>正文内容</label><textarea id="f_body" rows="2">' + (item ? esc(item.body || '') : '') + '</textarea></div>';
+        h += '<div class="fg" id="fg_bsub"><label>底部免责声明（小字）</label><input id="f_subtitle" value="' + (item ? esc(item.subtitle || '') : '') + '"></div>';
+        h += '<div class="fg" id="fg_bbadge" style="display:none"><label>徽章文字</label><input id="f_badge" value="' + (item ? esc(item.badge || '') : '') + '" placeholder="如 🔥 典藏推荐"></div>';
+        h += '<div class="fg" id="fg_bdesc" style="display:none"><label>简介</label><textarea id="f_desc">' + (item ? esc(item.description || '') : '') + '</textarea></div>';
+        h += '<div class="fg" id="fg_bcover" style="display:none"><label>海报路径</label><div class="cover-row"><input id="f_cover" value="' + (item ? esc(item.cover || '') : '') + '"><button type="button" class="btn-sm" onclick="pickCover()">📁</button></div></div>';
+        h += '<div class="fg" id="fg_blink" style="display:none"><label>跳转链接</label><input id="f_link" value="' + (item ? esc(item.link || '') : '') + '" placeholder="detail.html?id=X"></div>';
+        h += '<div class="fg"><label>背景渐变 CSS</label><textarea id="f_bg" rows="2">' + (item ? esc(item.bg || '') : '') + '</textarea></div>';
+        h += '<div class="fg" id="fg_bendc" style="display:none"><label>渐变遮罩色</label><input id="f_endColor" value="' + (item ? esc(item.endColor || '') : '') + '" placeholder="#4A148C"></div>';
+      } else {
+        /* ====== 资源/教程编辑 ====== */
+        h += '<div class="fg"><label>标题 <span class="req">*</span></label><input id="f_title" value="' + (item ? esc(item.title) : '') + '"></div>';
+        if (isM) h += '<div class="fg"><label>类型 <span class="req">*</span></label><select id="f_type"><option value="电影"' + (item && item.type === '电影' ? ' selected' : '') + '>电影</option><option value="剧集"' + (item && item.type === '剧集' ? ' selected' : '') + '>剧集</option></select></div>';
+        else if (isS) h += '<input type="hidden" id="f_type" value="软件">';
+
+        h += '<div class="fg"><label>标签</label>' + tagUI('tags', _tags, isM ? presetTagsMovie : (isS ? presetTagsSoftware : null)) + '</div>';
+
+        h += '<div class="fg"><label>封面路径 <span class="req">*</span></label><div class="cover-row"><input id="f_cover" value="' + (item ? esc(item.cover) : '') + '" placeholder="https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/xxx.jpg"><button type="button" class="btn-sm" onclick="pickCover()">📁</button></div></div>';
+
+        h += '<div class="fg"><label>简介</label><textarea id="f_desc" rows="2">' + (item ? esc(item.description || '') : '') + '</textarea></div>';
+        h += '<div class="fg-row"><div class="fg"><label>日期</label><input id="f_date" type="date" value="' + (item ? item.date : '') + '"></div>';
+        h += '<div class="fg"><label>文件大小</label><input id="f_size" value="' + (item ? esc(item.size || '') : '') + '" placeholder="如 15.2 GB"></div></div>';
+
+        if (isM) {
+          h += '<div class="divider">影视技术参数</div>';
+          h += '<div class="fg-row">';
+          h += '<div class="fg"><label>分辨率</label>' + buildSelect('f_resolution', ['4K HDR','4K HDR IMAX','4K','1080P BluRay','1080P BDRip','1080P','720P'], item ? item.resolution : '') + '</div>';
+          h += '<div class="fg"><label>字幕语言</label>' + buildSelect('f_subtitle', ['中英双语','中日双语','简体中文','English'], item ? item.subtitle : '') + '</div>';
+          h += '</div><div class="fg-row">';
+          h += '<div class="fg"><label>视频格式</label>' + buildSelect('f_format', ['MKV','MP4','AVI','MOV'], item ? item.format : '') + '</div>';
+          h += '<div class="fg"></div></div>';
+        } else if (isS) {
+          h += '<div class="divider">软件技术参数</div>';
+          h += '<div class="fg-row"><div class="fg"><label>版本</label><input id="f_version" value="' + (item ? esc(item.version || '') : '') + '"></div><div class="fg"><label>平台</label>' + buildSelect('f_platform', ['Windows','macOS','Windows / macOS','Windows / macOS / Linux'], item ? item.platform : '') + '</div></div>';
+          h += '<div class="fg-row"><div class="fg"><label>界面语言</label>' + buildSelect('f_language', ['简体中文','简体中文 / English','English','English / 简体中文','中文'], item ? item.language : '') + '</div><div class="fg"></div></div>';
+        } else if (isTut) {
+          h += '<div class="divider">教程参数</div>';
+          h += '<div class="fg-row"><div class="fg"><label>图标 Emoji</label><input id="f_icon" value="' + (item ? esc(item.icon || '') : '') + '"></div><div class="fg"><label>难度</label><select id="f_difficulty"><option value="入门"' + (item && item.difficulty === '入门' ? ' selected' : '') + '>入门</option><option value="进阶"' + (item && item.difficulty === '进阶' ? ' selected' : '') + '>进阶</option><option value="高级"' + (item && item.difficulty === '高级' ? ' selected' : '') + '>高级</option></select></div></div>';
+          h += '<div class="fg-row"><div class="fg"><label>分类</label><select id="f_category"><option value="剪辑"' + (item && item.category === '剪辑' ? ' selected' : '') + '>剪辑</option><option value="调色"' + (item && item.category === '调色' ? ' selected' : '') + '>调色</option><option value="创作"' + (item && item.category === '创作' ? ' selected' : '') + '>创作</option><option value="音频"' + (item && item.category === '音频' ? ' selected' : '') + '>音频</option><option value="字幕"' + (item && item.category === '字幕' ? ' selected' : '') + '>字幕</option></select></div>';
+          h += '<div class="fg"><label>文档链接（选填）</label><input id="f_docLink" value="' + (item ? esc(item.docLink || '') : '') + '" placeholder="外部视频链接或附加资源 URL"></div></div>';
+        }
+
+        h += '<div class="divider">下载链接</div>';
+        h += '<div class="fg-row"><div class="fg"><label>百度网盘链接</label><input id="f_baidu" value="' + (item && item.downloads && item.downloads.baidu ? esc(item.downloads.baidu.link) : '') + '"></div><div class="fg"><label>夸克网盘链接</label><input id="f_quark" value="' + (item && item.downloads && item.downloads.quark ? esc(item.downloads.quark.link) : '') + '"></div></div>';
+
+        if (isM) { h += '<div class="divider">片段素材</div><div class="fg">' + tagUI('clips', _clips, null) + '</div>'; }
+        if (isTut) {
+          h += '<div class="divider">教程大纲</div><div class="fg">' + tagUI('outline', _outline, null) + '</div>';
+          h += '<div class="fg"><label>正文内容</label><textarea id="f_content" rows="6">' + (item ? esc(item.content || '') : '') + '</textarea></div>';
+        }
+      }
+
+      h += '</div>';
+      h += '<div class="modal-foot"><button class="btn-sm" onclick="closeEdit()">取消</button><button class="btn-sm pri" onclick="save()">💾 保存</button></div>';
+
+      document.getElementById('modalPanel').innerHTML = h;
+      document.getElementById('editModal').classList.add('show');
+
+      // 广告栏：显示/隐藏字段
+      if (isBanner) toggleBannerFields();
+    }
+
+    function closeEdit() { document.getElementById('editModal').classList.remove('show'); _tags = []; _clips = []; _outline = []; _editId = null; _coverFile = null; }
+
+    /* 广告栏：根据类型切换显示字段 */
+    function toggleBannerFields() {
+      var sel = document.getElementById('f_btype'); if (!sel) return;
+      var isAnn = sel.value === 'announcement';
+      toggleFg('fg_bicon', isAnn);
+      toggleFg('fg_bbody', isAnn);
+      toggleFg('fg_bsub', isAnn);
+      toggleFg('fg_bbadge', !isAnn);
+      toggleFg('fg_bdesc', !isAnn);
+      toggleFg('fg_bcover', !isAnn);
+      toggleFg('fg_blink', !isAnn);
+      toggleFg('fg_bendc', !isAnn);
+    }
+    function toggleFg(id, show) { var el = document.getElementById(id); if (el) el.style.display = show ? '' : 'none'; }
+
+    /* 封面文件选择 */
+    function pickCover() {
+      document.getElementById('coverFilePicker').click();
+    }
+    function onCoverPicked() {
+      var file = document.getElementById('coverFilePicker').files[0];
+      if (file) {
+        var coverInput = document.getElementById('f_cover');
+        if (coverInput) coverInput.value = 'https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/' + encodeURIComponent(file.name);
+      }
+    }
+
+    /* 原地刷新标签编辑器 UI（不重建整个弹窗，不丢数据） */
+    function refreshTagUI(name, arr, presets) {
+      var containerId = 'tagContainer_' + name;
+      var container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = tagUI(name, arr, presets);
+      // 聚焦输入框
+      var inp = document.getElementById('ti_' + name);
+      if (inp) setTimeout(function() { inp.focus(); }, 50);
+    }
+
+    /* 预设标签 */
+    function addPresetTag(name, val) {
+      var arr = name === 'tags' ? _tags : (name === 'clips' ? _clips : _outline);
+      if (arr.indexOf(val) === -1) arr.push(val);
+      refreshTagUI(name, arr, name === 'tags' ? (curTab === 'movie' ? presetTagsMovie : (curTab === 'software' ? presetTagsSoftware : null)) : null);
+    }
+
+    /* 手动标签 */
+    function addTag(name) {
+      var inp = document.getElementById('ti_' + name); if (!inp) return;
+      var v = inp.value.trim(); if (!v) return;
+      var arr = name === 'tags' ? _tags : (name === 'clips' ? _clips : _outline);
+      if (arr.indexOf(v) === -1) arr.push(v);
+      refreshTagUI(name, arr, name === 'tags' ? (curTab === 'movie' ? presetTagsMovie : (curTab === 'software' ? presetTagsSoftware : null)) : null);
+    }
+    function rmTag(name, i) {
+      var arr = name === 'tags' ? _tags : (name === 'clips' ? _clips : _outline);
+      arr.splice(i, 1);
+      refreshTagUI(name, arr, name === 'tags' ? (curTab === 'movie' ? presetTagsMovie : (curTab === 'software' ? presetTagsSoftware : null)) : null);
+    }
+
+    /* 构建 select 下拉框（含当前值不在列表时自动追加） */
+    function buildSelect(id, options, currentVal) {
+      var opts = options.slice();
+      if (currentVal && opts.indexOf(currentVal) === -1) opts.unshift(currentVal);
+      var h = '<select id="' + id + '">';
+      opts.forEach(function(o) { h += '<option value="' + esc(o) + '"' + (o === currentVal ? ' selected' : '') + '>' + esc(o) + '</option>'; });
+      h += '</select>';
+      return h;
+    }
+
+    function gv(id) { var el = document.getElementById(id); return el ? el.value : ''; }
+
+    /* 生成新 ID：类型代号(2位) + 月份(2位) + 序号(2位) */
+    function genId(typeCode) {
+      var now = new Date();
+      var month = String(now.getMonth() + 1).padStart(2, '0');
+      var prefix = typeCode + month;
+      var max = 0;
+      var list = (typeCode === '03') ? tutorials : resources;
+      list.forEach(function(item) {
+        var sid = String(item.id);
+        if (sid.substring(0, 4) === prefix) {
+          var n = parseInt(sid.slice(4));
+          if (n > max) max = n;
+        }
+      });
+      return prefix + String(max + 1).padStart(2, '0');
+    }
+
+    /* 保存 */
+    function save() {
+      var isM = curTab === 'movie', isS = curTab === 'software', isTut = curTab === 'tutorial', isBanner = curTab === 'banner';
+
+      if (isBanner) {
+        var btype = gv('f_btype');
+        var bItem = {
+          type: btype,
+          title: gv('f_title').trim(),
+          bg: gv('f_bg').trim()
+        };
+        if (btype === 'announcement') {
+          bItem.icon = gv('f_icon').trim() || '🎬';
+          bItem.body = gv('f_body').trim();
+          bItem.subtitle = gv('f_subtitle').trim();
+        } else {
+          bItem.badge = gv('f_badge').trim();
+          bItem.description = gv('f_desc').trim();
+          bItem.cover = gv('f_cover').trim();
+          bItem.link = gv('f_link').trim();
+          bItem.endColor = gv('f_endColor').trim();
+        }
+        if (!bItem.title) { alert('请填写标题'); return; }
+        if (_editId !== null && _editId < banners.length) { banners[_editId] = bItem; }
+        else { banners.push(bItem); }
+        saveB();
+      } else {
+        // 资源/教程
+        var data = {};
+        data.title = gv('f_title').trim();
+        data.type = isS ? '软件' : (gv('f_type') || '电影');
+        data.tags = _tags.slice();
+        data.cover = gv('f_cover').trim();
+        data.description = gv('f_desc').trim();
+        data.date = gv('f_date');
+        data.size = gv('f_size').trim();
+        data.downloads = { baidu: { link: gv('f_baidu').trim() }, quark: { link: gv('f_quark').trim() } };
+        if (!data.title) { alert('请填写标题'); return; }
+        if (!data.cover) { alert('请填写封面路径'); return; }
+
+        if (isM) { data.resolution = gv('f_resolution').trim(); data.subtitle = gv('f_subtitle').trim(); data.format = gv('f_format').trim(); data.clips = _clips.slice(); }
+        else if (isS) { data.version = gv('f_version').trim(); data.platform = gv('f_platform').trim(); data.language = gv('f_language').trim(); }
+        else if (isTut) { data.icon = gv('f_icon').trim() || '📖'; data.summary = data.description; data.difficulty = gv('f_difficulty'); data.category = gv('f_category'); data.outline = _outline.slice(); data.content = gv('f_content').trim(); data.link = ''; data.docLink = gv('f_docLink').trim(); }
+
+        if (_editId === null) {
+          data.id = genId(isTut ? '03' : (isS ? '02' : '01'));
+          if (isTut) { data.link = 'tutorial-detail.html?id=' + data.id; tutorials.push(data); saveT(); }
+          else { resources.push(data); saveR(); }
+        } else {
+          if (isTut) { var idx = findTi(_editId); if (idx >= 0) { data.id = _editId; data.link = 'tutorial-detail.html?id=' + _editId; tutorials[idx] = data; saveT(); } }
+          else { var idx2 = findRi(_editId); if (idx2 >= 0) { data.id = _editId; resources[idx2] = data; saveR(); } }
+        }
+      }
+      closeEdit();
+      renderList();
+    }
+
+    /* ----- 6. 导出 data.js ----- */
+    function exportData() {
+      var bnJSON = JSON.stringify(banners, null, 2);
+      var content = '/* ============================================================\n   极锐光影 · 资源分享站 — 数据文件\n   ⚠️ 本文件由后台管理系统自动生成，部署前请人工审核内容安全性\n   ============================================================ */\n\nvar resources = ' + JSON.stringify(resources, null, 2) + ';\n\nvar tutorials = ' + JSON.stringify(tutorials, null, 2) + ';\n\n/* 横幅轮播数据 */\nvar bannerSlides = ' + bnJSON + ';\n\nvar ADMIN_PASSWORD_HASH = \'' + ADMIN_PASSWORD_HASH + '\';\n';
+      var blob = new Blob([content], { type: 'application/javascript;charset=utf-8' });
+      var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'data.js';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    }
+
+    /* ----- 7. 恢复默认 ----- */
+    function resetData() {
+      if (!confirm('确定恢复默认数据？所有修改将丢失。')) return;
+      localStorage.removeItem(SK_R); localStorage.removeItem(SK_T); localStorage.removeItem(SK_B); location.reload();
+    }
+
+    /* ----- 工具 ----- */
+    function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeEdit(); });
+  </script>
+</body>
+</html>
