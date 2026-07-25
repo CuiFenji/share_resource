@@ -1,0 +1,8 @@
+{
+  "name": "share-resource",
+  "version": "1.0.0",
+  "description": "极锐光影资源分享站",
+  "scripts": {
+    "build": "echo 'No build needed - static site'"
+  }
+}
