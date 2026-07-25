@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "极锐光影资源分享站",
   "scripts": {
-    "build": "echo 'No build needed - static site'"
+    "build": "rm -rf dist && mkdir dist && cp *.html dist/ && cp -r css js images dist/ && echo 'OK'"
   }
 }
