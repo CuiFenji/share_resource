@@ -551,7 +551,7 @@ var tutorials = [
    修改步骤: 1) 打开浏览器控制台 2) 运行 crypto.subtle.digest('SHA-256', new TextEncoder().encode('新密码'))
       .then(h => console.log(Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2,'0')).join('')))
    3) 将输出的哈希值替换下方字符串 */
-var ADMIN_PASSWORD_HASH = '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92';
+var ADMIN_PASSWORD_HASH = '113edf2758cc44d6db239987e2ce4aacea5affb9dd35b0c352449b6c1826cfcb';
 
 /* ===== 加载后台修改的缓存数据（localStorage 覆盖默认值）===== */
 (function() {
