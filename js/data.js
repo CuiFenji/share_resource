@@ -1001,3 +1001,18 @@ var bannerSlides = [
 ];
 
 var ADMIN_PASSWORD_HASH = '113edf2758cc44d6db239987e2ce4aacea5affb9dd35b0c352449b6c1826cfcb';
+
+/* 教程可见性（后台可切换） */
+var TUTORIALS_VISIBLE = true;
+
+/* ===== 加载后台缓存数据（localStorage 覆盖默认值）===== */
+(function() {
+  var r = localStorage.getItem('admin_res_v3');
+  if (r) { try { var a = JSON.parse(r); resources.length = 0; a.forEach(function(x) { resources.push(x); }); } catch(e) {} }
+  var t = localStorage.getItem('admin_tut_v3');
+  if (t) { try { var b = JSON.parse(t); tutorials.length = 0; b.forEach(function(x) { tutorials.push(x); }); } catch(e) {} }
+  var bn = localStorage.getItem('admin_banner_v3');
+  if (bn) { try { var bnArr = JSON.parse(bn); bannerSlides.length = 0; bnArr.forEach(function(x) { bannerSlides.push(x); }); } catch(e) {} }
+  var tv = localStorage.getItem('admin_tut_visible_v3');
+  if (tv === '0') TUTORIALS_VISIBLE = false;
+})();
