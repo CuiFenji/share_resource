@@ -302,7 +302,6 @@ var resources = [
     }
   },
   {
-    "id": "010710",
     "title": "千与千寻",
     "type": "电影",
     "tags": [
@@ -313,11 +312,19 @@ var resources = [
     ],
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/千与千寻.jpg",
     "description": "宫崎骏与吉卜力工作室的奥斯卡获奖神作，奇幻世界的成长之旅。",
-    "date": "2026-07-15",
-    "resolution": "1080P BluRay",
+    "date": "2026-08-01",
+    "size": "5.97 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1p-JGLMXqoLhaQdQS5uQakA?pwd=ivdw"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
     "subtitle": "中日双语",
-    "format": "MKV",
-    "size": "10.4 GB",
+    "format": "MP4",
     "clips": [
       "千寻父母变猪震撼场景",
       "无脸男大闹油屋",
@@ -325,14 +332,7 @@ var resources = [
       "海上列车穿行",
       "汤婆婆与钱婆婆对决"
     ],
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_chihiro"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_chihiro"
-      }
-    }
+    "id": "010710"
   },
   {
     "id": "010711",
@@ -710,6 +710,114 @@ var resources = [
     "format": "MP4",
     "clips": [],
     "id": "010801"
+  },
+  {
+    "title": "河边的错误",
+    "type": "电影",
+    "tags": [
+      "4K",
+      "剧情",
+      "犯罪",
+      "悬疑"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/河边的错误.jpg",
+    "description": "刑警马哲追查小镇离奇命案，在探寻真相时逐渐混淆现实与幻觉，陷入荒诞困境。",
+    "date": "2026-08-01",
+    "size": "6.91 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1PoZJ_hyKxAE0UUakXKzxcA?pwd=q7yk"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
+    "subtitle": "简体中文",
+    "format": "MP4",
+    "clips": [],
+    "id": "010802"
+  },
+  {
+    "title": "金刚狼3：殊死一战",
+    "type": "电影",
+    "tags": [
+      "4K",
+      "战斗",
+      "漫威",
+      "热血"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/金刚狼3.png",
+    "description": "衰老疲惫的金刚狼护送少女劳拉逃离追捕，踏上属于他最后的征途。",
+    "date": "2026-08-01",
+    "size": "2.4 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1xMXaZqcG_t78820KKuX0OA?pwd=mc9a"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
+    "subtitle": "中英双语",
+    "format": "MP4",
+    "clips": [],
+    "id": "010803"
+  },
+  {
+    "title": "美国队长2：复仇者先锋",
+    "type": "电影",
+    "tags": [
+      "4K",
+      "科幻",
+      "漫威",
+      "动作"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/美国队长2.jpg",
+    "description": "美国队长发现神盾局被九头蛇渗透，联手同伴粉碎敌人阴谋。",
+    "date": "2026-08-01",
+    "size": "1.6 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1rKclhjgEcmkOcGiGAdidTg?pwd=pfc9"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
+    "subtitle": "中英双语",
+    "format": "MP4",
+    "clips": [],
+    "id": "010804"
+  },
+  {
+    "title": "寻梦环游记",
+    "type": "电影",
+    "tags": [
+      "4K",
+      "动画",
+      "奇幻",
+      "冒险"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/寻梦环游记.jpg",
+    "description": "男孩误入亡灵国度，追寻音乐梦想，领悟家人与思念的真谛。",
+    "date": "2026-08-01",
+    "size": "2.02 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1dJfFeTncyILRYFYhngqdVQ?pwd=bwda"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
+    "subtitle": "中英双语",
+    "format": "MP4",
+    "clips": [],
+    "id": "010805"
   }
 ];
 
@@ -864,10 +972,10 @@ var tutorials = [
 var bannerSlides = [
   {
     "type": "announcement",
-    "title": "更新公告",
+    "title": "8月1日更新公告",
     "bg": "linear-gradient(135deg, #0D47A1 0%, #1565C0 40%, #1E88E5 100%)",
     "icon": "📢",
-    "body": "精选影视素材片段 · 高清画质 · 双语字幕 · 持续更新",
+    "body": "1.完善反馈页功能，对于反馈我们会第一时间反馈并更新内容\n2.修复ui显示异常bug\n3.新增《千与千寻》《寻梦环游记》等影视作品",
     "subtitle": "本站资源仅供学习交流，所有内容为剪辑后的影视素材片段，非完整原片。请于下载后 24 小时内删除。"
   },
   {
