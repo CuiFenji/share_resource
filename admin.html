@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>后台管理 — 资源站</title>
+  <title>后台管理 — 超级站</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
     * { box-sizing: border-box; }
@@ -159,7 +159,7 @@
 
     // 默认广告栏数据
     var defaultBanners = [
-      { type: 'announcement', icon: '🎬', title: '资源分享站', body: '精选影视素材片段 · 高清画质 · 双语字幕 · 持续更新', subtitle: '本站资源仅供学习交流，所有内容为剪辑后的影视素材片段，非完整原片。请于下载后 24 小时内删除。', bg: 'linear-gradient(135deg, #0D47A1 0%, #1565C0 40%, #1E88E5 100%)' },
+      { type: 'announcement', icon: '🎬', title: '超级站', body: '精选影视素材片段 · 高清画质 · 双语字幕 · 持续更新', subtitle: '本站资源仅供学习交流，所有内容为剪辑后的影视素材片段，非完整原片。请于下载后 24 小时内删除。', bg: 'linear-gradient(135deg, #0D47A1 0%, #1565C0 40%, #1E88E5 100%)' },
       { type: 'movie', badge: '🔥 典藏推荐', title: '复仇者联盟3：无限战争', description: '灭霸降临！漫威十年布局巅峰之战，IMAX 4K HDR 高码率压制', cover: 'https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/复仇者联盟3.png', link: 'detail.html?id=010702', bg: 'linear-gradient(135deg, #1A237E 0%, #4A148C 100%)', endColor: '#4A148C' },
       { type: 'movie', badge: '🎬 必看神作', title: '你的名字', description: '新海诚现象级动画神作，穿越时空的身体互换，唯美到极致的纯爱故事', cover: 'https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/你的名字.png', link: 'detail.html?id=010709', bg: 'linear-gradient(135deg, #0D47A1 0%, #6A1B9A 100%)', endColor: '#6A1B9A' }
     ];
@@ -550,7 +550,7 @@
     /* ----- 6. 导出 data.js ----- */
     function exportData() {
       var bnJSON = JSON.stringify(banners, null, 2);
-      var content = '/* ============================================================\n   资源分享站 — 数据文件\n   ⚠️ 本文件由后台管理系统自动生成，部署前请人工审核内容安全性\n   ============================================================ */\n\nvar resources = ' + JSON.stringify(resources, null, 2) + ';\n\nvar tutorials = ' + JSON.stringify(tutorials, null, 2) + ';\n\n/* 横幅轮播数据 */\nvar bannerSlides = ' + bnJSON + ';\n\nvar ADMIN_PASSWORD_HASH = \'' + ADMIN_PASSWORD_HASH + '\';\n';
+      var content = '/* ============================================================\n   超级站 — 数据文件\n   ⚠️ 本文件由后台管理系统自动生成，部署前请人工审核内容安全性\n   ============================================================ */\n\nvar resources = ' + JSON.stringify(resources, null, 2) + ';\n\nvar tutorials = ' + JSON.stringify(tutorials, null, 2) + ';\n\n/* 横幅轮播数据 */\nvar bannerSlides = ' + bnJSON + ';\n\nvar ADMIN_PASSWORD_HASH = \'' + ADMIN_PASSWORD_HASH + '\';\n';
       var blob = new Blob([content], { type: 'application/javascript;charset=utf-8' });
       var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'data.js';
       document.body.appendChild(a); a.click(); document.body.removeChild(a);

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="资源分享站 — 反馈问题">
-  <title>反馈问题 — 资源站</title>
+  <meta name="description" content="超级站 — 反馈问题">
+  <title>反馈问题 — 超级站</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
     .feedback-page {
@@ -156,7 +156,7 @@
   <nav class="navbar">
     <a href="index.html" class="navbar-brand">
       <span class="brand-icon">🎬</span>
-      <span>资源站</span>
+      <span>超级站</span>
     </a>
     <ul class="navbar-links">
       <li><a href="index.html">主页</a></li>
@@ -176,37 +176,42 @@
         <div class="divider"></div>
       </div>
 
-      <div class="feedback-form-card fade-in-up delay-1" id="feedbackForm">
+      <form class="feedback-form-card fade-in-up delay-1" id="feedbackForm" action="#" onsubmit="return false">
+        <!-- Web3Forms：POST 到 API，ACCESS_KEY 需替换 -->
+        <input type="hidden" name="access_key" value="03e51441-584a-4973-a4c8-fe4b872c0026">
+        <input type="hidden" name="subject" value="超级站 - 用户反馈">
+        <input type="hidden" name="from_name" value="超级站">
+
         <div class="form-group">
           <label>问题类型 <span class="required">*</span></label>
-          <select id="issueType">
+          <select id="issueType" name="issue_type" required>
             <option value="">请选择问题类型</option>
-            <option value="link">下载链接失效</option>
-            <option value="quality">资源画质/音质问题</option>
-            <option value="subtitle">字幕错误/不同步</option>
-            <option value="resource_request">我想要该影片资源</option>
-            <option value="suggestion">功能建议</option>
-            <option value="bug">网站Bug</option>
-            <option value="other">其他问题</option>
+            <option value="下载链接失效">下载链接失效</option>
+            <option value="资源画质/音质问题">资源画质/音质问题</option>
+            <option value="字幕错误/不同步">字幕错误/不同步</option>
+            <option value="我想要该影片资源">我想要该影片资源</option>
+            <option value="功能建议">功能建议</option>
+            <option value="网站Bug">网站Bug</option>
+            <option value="其他问题">其他问题</option>
           </select>
         </div>
 
         <div class="form-group">
           <label>问题描述 <span class="required">*</span></label>
-          <textarea id="issueDesc" placeholder="请详细描述你遇到的问题或建议..."></textarea>
+          <textarea id="issueDesc" name="message" placeholder="请详细描述你遇到的问题或建议..." required></textarea>
           <div class="form-hint">请尽量详细描述，方便我们快速定位和处理</div>
         </div>
 
         <div class="form-group">
           <label>联系方式（选填）</label>
-          <input type="text" id="issueContact" placeholder="QQ号 / 微信号 / 邮箱，方便我们回复你">
+          <input type="text" id="issueContact" name="contact" placeholder="QQ号 / 微信号 / 邮箱，方便我们回复你">
         </div>
 
-        <button class="btn-submit" onclick="submitFeedback()">📩 提交反馈</button>
-      </div>
+        <button class="btn-submit" type="submit" id="submitBtn">📩 提交反馈</button>
+      </form>
 
       <!-- 提交成功 -->
-      <div class="submit-success" id="submitSuccess">
+      <div class="submit-success" id="submitSuccess" style="display:none;">
         <div class="success-icon">✅</div>
         <h2>反馈提交成功！</h2>
         <p>感谢你的反馈，我们会尽快查看并处理</p>
@@ -226,7 +231,7 @@
         <li><a href="feedback.html">反馈问题</a></li>
       </ul>
       <p class="footer-copyright">
-        © 2026 资源分享站 — 本站资源仅供学习交流，请于下载后 24 小时内删除
+        © 2026 超级站 — 本站资源仅供学习交流，请于下载后 24 小时内删除
       </p>
     </div>
   </footer>
@@ -244,7 +249,8 @@
         if (select) {
           // 等待 DOM 渲染后设置
           for (var i = 0; i < select.options.length; i++) {
-            if (select.options[i].value === presetType) {
+            var matchVal = presetType === 'resource_request' ? '我想要该影片资源' : presetType;
+            if (select.options[i].value === matchVal) {
               select.selectedIndex = i;
               break;
             }
@@ -258,17 +264,32 @@
       }
     })();
 
-    function submitFeedback() {
-      var type = document.getElementById('issueType').value;
-      var desc = document.getElementById('issueDesc').value.trim();
+    /* 表单提交 → Web3Forms API */
+    document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var btn = document.getElementById('submitBtn');
+      btn.textContent = '⏳ 提交中...';
+      btn.disabled = true;
 
-      if (!type) { alert('请选择问题类型'); return; }
-      if (!desc) { alert('请填写问题描述'); return; }
-
-      // 显示成功页（纯前端演示；接入后端时可改为真实提交）
-      document.getElementById('feedbackForm').style.display = 'none';
-      document.getElementById('submitSuccess').classList.add('show');
-    }
+      var formData = new FormData(e.target);
+      try {
+        var res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+        var result = await res.json();
+        if (result.success) {
+          document.getElementById('feedbackForm').style.display = 'none';
+          document.getElementById('submitSuccess').style.display = 'block';
+        } else {
+          alert('提交失败：' + (result.message || '请稍后重试'));
+        }
+      } catch(err) {
+        alert('网络错误，请稍后重试');
+      }
+      btn.textContent = '📩 提交反馈';
+      btn.disabled = false;
+    });
   </script>
 </body>
 </html>
