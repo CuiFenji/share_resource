@@ -5,8 +5,7 @@
 
 var resources = [
   {
-    "id": "010701",
-    "title": "复仇者联盟",
+    "title": "复仇者联盟（正在打包）",
     "type": "电影",
     "tags": [
       "1080P",
@@ -17,10 +16,18 @@ var resources = [
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/复仇者联盟1.png",
     "description": "漫威宇宙第一阶段巅峰集结，钢铁侠、美队、雷神等超级英雄首次联手保卫地球。",
     "date": "2026-07-24",
+    "size": "15.2 GB",
+    "downloads": {
+      "baidu": {
+        "link": ""
+      },
+      "quark": {
+        "link": ""
+      }
+    },
     "resolution": "1080P BluRay",
     "subtitle": "中英双语",
     "format": "MKV",
-    "size": "15.2 GB",
     "clips": [
       "纽约大战外星军团",
       "钢铁侠核弹冲刺",
@@ -28,18 +35,10 @@ var resources = [
       "黑寡妇vs鹰眼",
       "美队街头肉搏"
     ],
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_avengers1"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_avengers1"
-      }
-    }
+    "id": "010701"
   },
   {
-    "id": "010702",
-    "title": "复仇者联盟3：无限战争",
+    "title": "复仇者联盟3：无限战争（正在打包）",
     "type": "电影",
     "tags": [
       "4K",
@@ -50,10 +49,18 @@ var resources = [
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/复仇者联盟3.png",
     "description": "灭霸降临，无限手套席卷宇宙，史上最惨烈超级英雄战役，结局震撼人心。",
     "date": "2026-07-23",
+    "size": "28.6 GB",
+    "downloads": {
+      "baidu": {
+        "link": ""
+      },
+      "quark": {
+        "link": ""
+      }
+    },
     "resolution": "4K HDR IMAX",
     "subtitle": "中英双语",
     "format": "MKV",
-    "size": "28.6 GB",
     "clips": [
       "灭霸登场碾压浩克",
       "泰坦星团战",
@@ -61,17 +68,9 @@ var resources = [
       "红骷髅灵魂宝石",
       "蜘蛛侠化灰瞬间"
     ],
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_avengers3"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_avengers3"
-      }
-    }
+    "id": "010702"
   },
   {
-    "id": "010703",
     "title": "钢铁侠",
     "type": "电影",
     "tags": [
@@ -82,11 +81,19 @@ var resources = [
     ],
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/钢铁侠1.png",
     "description": "漫威宇宙开山之作！托尼·斯塔克的传奇起源，小罗伯特·唐尼经典演绎。",
-    "date": "2026-07-22",
-    "resolution": "4K HDR",
+    "date": "2026-08-04",
+    "size": "6.85 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1YqeSr9b5Gutq-UjwltI4bA?pwd=iyhz"
+      },
+      "quark": {
+        "link": "https://pan.quark.cn/s/2fa568817b59?pwd=fNa6"
+      }
+    },
+    "resolution": "4K",
     "subtitle": "中英双语",
-    "format": "MKV",
-    "size": "22.1 GB",
+    "format": "MP4",
     "clips": [
       "山洞打造Mark I战甲",
       "钢铁侠首飞测试",
@@ -94,50 +101,9 @@ var resources = [
       "公路救难民",
       "最终Boss战铁霸王"
     ],
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_ironman"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_ironman"
-      }
-    }
+    "id": "010703"
   },
   {
-    "id": "010704",
-    "title": "奇异博士",
-    "type": "电影",
-    "tags": [
-      "4K",
-      "中字",
-      "奇幻",
-      "漫威"
-    ],
-    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/奇异博士1.png",
-    "description": "卷福主演的魔法视觉盛宴，打开漫威多元宇宙的大门，特效惊艳绝伦。",
-    "date": "2026-07-21",
-    "resolution": "4K HDR IMAX",
-    "subtitle": "中英双语",
-    "format": "MKV",
-    "size": "24.3 GB",
-    "clips": [
-      "镜像维度追逐战",
-      "古一法师死亡时刻",
-      "奇异博士时间循环谈判",
-      "纽约圣殿折叠",
-      "黑暗维度多玛姆降临"
-    ],
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_strange"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_strange"
-      }
-    }
-  },
-  {
-    "id": "010705",
     "title": "蜘蛛侠：英雄远征",
     "type": "电影",
     "tags": [
@@ -148,11 +114,19 @@ var resources = [
     ],
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/蜘蛛侠：英雄远征.png",
     "description": "荷兰弟蜘蛛侠欧洲冒险，神秘客登场，青春与英雄责任的完美融合。",
-    "date": "2026-07-20",
-    "resolution": "1080P BluRay",
+    "date": "2026-08-04",
+    "size": "5.6 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1oCEM2Kg8_fzPcKdCzRoBvg?pwd=sww7"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
     "subtitle": "中英双语",
-    "format": "MKV",
-    "size": "12.8 GB",
+    "format": "MP4",
     "clips": [
       "威尼斯水怪大战",
       "神秘客幻境蜘蛛侠",
@@ -160,17 +134,9 @@ var resources = [
       "伦敦塔桥决战",
       "蜘蛛侠蜘蛛感应觉醒"
     ],
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_spideyff"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_spideyff"
-      }
-    }
+    "id": "010705"
   },
   {
-    "id": "010706",
     "title": "超凡蜘蛛侠",
     "type": "电影",
     "tags": [
@@ -181,11 +147,19 @@ var resources = [
     ],
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/超凡蜘蛛侠1.png",
     "description": "安德鲁·加菲尔德版蜘蛛侠，重新诠释彼得·帕克的成长与爱情。",
-    "date": "2026-07-19",
-    "resolution": "1080P BluRay",
+    "date": "2026-08-04",
+    "size": "7.37 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1EcIIsVLd46CvMoN4iLC_HQ?pwd=kae1"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
     "subtitle": "中英双语",
-    "format": "MKV",
-    "size": "11.5 GB",
+    "format": "MP4",
     "clips": [
       "彼得帕克被蜘蛛咬伤",
       "地下铁大战蜥蜴人",
@@ -193,18 +167,10 @@ var resources = [
       "奥斯本大厦屋顶战",
       "格温父亲临终嘱托"
     ],
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_amazing1"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_amazing1"
-      }
-    }
+    "id": "010706"
   },
   {
-    "id": "010707",
-    "title": "超凡蜘蛛侠2",
+    "title": "超凡蜘蛛侠2（正在打包）",
     "type": "电影",
     "tags": [
       "1080P",
@@ -215,10 +181,18 @@ var resources = [
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/超凡蜘蛛侠2.png",
     "description": "电光人登场，格温之死令人心碎，超凡系列的华丽终章。",
     "date": "2026-07-18",
+    "size": "13.2 GB",
+    "downloads": {
+      "baidu": {
+        "link": ""
+      },
+      "quark": {
+        "link": ""
+      }
+    },
     "resolution": "1080P BluRay",
     "subtitle": "中英双语",
     "format": "MKV",
-    "size": "13.2 GB",
     "clips": [
       "时代广场电光人登场",
       "蜘蛛侠vs犀牛人开场",
@@ -226,14 +200,7 @@ var resources = [
       "绿魔父子对峙",
       "蜘蛛侠空中摆荡长镜头"
     ],
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_amazing2"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_amazing2"
-      }
-    }
+    "id": "010707"
   },
   {
     "title": "毒液",
@@ -269,7 +236,6 @@ var resources = [
     "id": "010708"
   },
   {
-    "id": "010709",
     "title": "你的名字",
     "type": "电影",
     "tags": [
@@ -280,11 +246,19 @@ var resources = [
     ],
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/你的名字.png",
     "description": "新海诚现象级动画神作，穿越时空的身体互换，唯美到极致的纯爱故事。",
-    "date": "2026-07-16",
-    "resolution": "4K HDR",
+    "date": "2026-08-04",
+    "size": "3.03 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/11X9kLaWIey5000g276-b8w?pwd=5kwr"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "1080P",
     "subtitle": "中日双语",
-    "format": "MKV",
-    "size": "18.9 GB",
+    "format": "MP4",
     "clips": [
       "黄昏之时山顶相遇",
       "口嚼酒仪式场景",
@@ -292,14 +266,7 @@ var resources = [
       "东京楼梯初次擦肩",
       "三叶剪发变身"
     ],
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_yourname"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_yourname"
-      }
-    }
+    "id": "010709"
   },
   {
     "title": "千与千寻",
@@ -335,8 +302,7 @@ var resources = [
     "id": "010710"
   },
   {
-    "id": "010711",
-    "title": "你好世界",
+    "title": "你好世界（待制作）",
     "type": "电影",
     "tags": [
       "1080P",
@@ -347,10 +313,18 @@ var resources = [
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/你好世界.png",
     "description": "发生在京都的科幻爱情动画，虚拟与现实交织的青春恋爱物语。",
     "date": "2026-07-14",
+    "size": "8.7 GB",
+    "downloads": {
+      "baidu": {
+        "link": ""
+      },
+      "quark": {
+        "link": ""
+      }
+    },
     "resolution": "1080P BluRay",
     "subtitle": "中日双语",
     "format": "MKV",
-    "size": "8.7 GB",
     "clips": [
       "虚拟世界数据修复",
       "京都街景追逐",
@@ -358,18 +332,10 @@ var resources = [
       "月下告白场景",
       "终极数据重构"
     ],
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_helloworld"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_helloworld"
-      }
-    }
+    "id": "010711"
   },
   {
-    "id": "010712",
-    "title": "声之形",
+    "title": "声之形（正在打包）",
     "type": "电影",
     "tags": [
       "1080P",
@@ -380,10 +346,18 @@ var resources = [
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/声之形.png",
     "description": "京阿尼感人至深的剧场版，关于救赎、理解与沟通的青春物语。",
     "date": "2026-07-13",
+    "size": "9.3 GB",
+    "downloads": {
+      "baidu": {
+        "link": ""
+      },
+      "quark": {
+        "link": ""
+      }
+    },
     "resolution": "1080P BluRay",
     "subtitle": "中日双语",
     "format": "MKV",
-    "size": "9.3 GB",
     "clips": [
       "教室手语交流初遇",
       "桥上坠落救援",
@@ -391,18 +365,10 @@ var resources = [
       "校园屋顶和解",
       "最终释怀的微笑"
     ],
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_koenokatachi"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_koenokatachi"
-      }
-    }
+    "id": "010712"
   },
   {
-    "id": "010713",
-    "title": "秒速五厘米",
+    "title": "秒速五厘米（待制作）",
     "type": "电影",
     "tags": [
       "1080P",
@@ -413,10 +379,18 @@ var resources = [
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/秒速五厘米.png",
     "description": "新海诚经典之作，三话构成的唯美爱情故事，樱花飘落的速度是每秒五厘米。",
     "date": "2026-07-12",
+    "size": "7.8 GB",
+    "downloads": {
+      "baidu": {
+        "link": ""
+      },
+      "quark": {
+        "link": ""
+      }
+    },
     "resolution": "1080P BluRay",
     "subtitle": "中日双语",
     "format": "MKV",
-    "size": "7.8 GB",
     "clips": [
       "樱花抄雪夜列车",
       "种子岛火箭发射",
@@ -424,18 +398,10 @@ var resources = [
       "邮箱旁的告别",
       "铁路道口擦肩而过"
     ],
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_5cm"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_5cm"
-      }
-    }
+    "id": "010713"
   },
   {
-    "id": "010714",
-    "title": "咒术回战",
+    "title": "咒术回战（待制作）",
     "type": "剧集",
     "tags": [
       "1080P",
@@ -446,10 +412,18 @@ var resources = [
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/咒术回战.png",
     "description": "现象级热血动画，虎杖悠仁吞下宿傩手指后的咒术师之战，作画炸裂。",
     "date": "2026-07-11",
+    "size": "32.6 GB (24集)",
+    "downloads": {
+      "baidu": {
+        "link": ""
+      },
+      "quark": {
+        "link": ""
+      }
+    },
     "resolution": "1080P BDRip",
     "subtitle": "中日双语",
     "format": "MKV",
-    "size": "32.6 GB (24集)",
     "clips": [
       "虎杖吞下宿傩手指",
       "五条悟领域展开",
@@ -457,18 +431,10 @@ var resources = [
       "伏黑惠式神召唤",
       "虎杖vs胀相兄弟对决"
     ],
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_jujutsu"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_jujutsu"
-      }
-    }
+    "id": "010714"
   },
   {
-    "id": "010715",
-    "title": "海贼王",
+    "title": "海贼王（待制作）",
     "type": "剧集",
     "tags": [
       "1080P",
@@ -479,10 +445,18 @@ var resources = [
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/海贼王.png",
     "description": "连载超20年的传奇动漫，路飞与草帽一伙寻找大秘宝的伟大航路冒险。",
     "date": "2026-07-10",
+    "size": "56.2 GB (合集)",
+    "downloads": {
+      "baidu": {
+        "link": ""
+      },
+      "quark": {
+        "link": ""
+      }
+    },
     "resolution": "1080P BDRip",
     "subtitle": "中日双语",
     "format": "MKV",
-    "size": "56.2 GB (合集)",
     "clips": [
       "路飞vs路奇司法岛",
       "白胡子顶上战争",
@@ -490,18 +464,10 @@ var resources = [
       "山治恶魔风脚变身",
       "路飞四档弹力人"
     ],
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_onepiece"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_onepiece"
-      }
-    }
+    "id": "010715"
   },
   {
-    "id": "010716",
-    "title": "火影忍者",
+    "title": "火影忍者（待制作）",
     "type": "剧集",
     "tags": [
       "1080P",
@@ -512,10 +478,18 @@ var resources = [
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/火影忍者.png",
     "description": "三大民工漫之一，鸣人从吊车尾到火影的成长史诗，忍界大战震撼人心。",
     "date": "2026-07-09",
+    "size": "48.5 GB (合集)",
+    "downloads": {
+      "baidu": {
+        "link": ""
+      },
+      "quark": {
+        "link": ""
+      }
+    },
     "resolution": "1080P BDRip",
     "subtitle": "中日双语",
     "format": "MKV",
-    "size": "48.5 GB (合集)",
     "clips": [
       "鸣人vs佩恩天道",
       "佐助vs鼬兄弟之战",
@@ -523,18 +497,10 @@ var resources = [
       "卡卡西vs带土神威空间",
       "鸣人九尾模式vs十尾"
     ],
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_naruto"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_naruto"
-      }
-    }
+    "id": "010716"
   },
   {
-    "id": "020701",
-    "title": "Adobe Photoshop 2026",
+    "title": "Adobe Photoshop 2023",
     "type": "软件",
     "tags": [
       "图像处理",
@@ -543,144 +509,45 @@ var resources = [
     ],
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/photoshop.svg",
     "description": "业界最强大的图像编辑与设计软件，最新版集成 AI 生成式填充，修图效率倍增。",
-    "date": "2026-07-24",
-    "version": "2026 v25.0",
+    "date": "2026-08-04",
+    "size": "4.9 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1gWPXAQK2OccA80yx1W6aKg?pwd=b13d"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "version": "2023 v24.6.0",
     "platform": "Windows / macOS",
     "language": "简体中文 / English",
-    "size": "4.8 GB",
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_ps"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_ps"
-      }
-    }
+    "id": "020701"
   },
   {
-    "id": "020702",
-    "title": "DaVinci Resolve 20",
-    "type": "软件",
-    "tags": [
-      "视频剪辑",
-      "调色",
-      "Win/Mac"
-    ],
-    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/davinci.svg",
-    "description": "好莱坞级专业调色与剪辑软件，免费版功能已覆盖绝大多数创作需求。",
-    "date": "2026-07-23",
-    "version": "20.0 正式版",
-    "platform": "Windows / macOS",
-    "language": "简体中文 / English",
-    "size": "5.2 GB",
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_davinci"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_davinci"
-      }
-    }
-  },
-  {
-    "id": "020703",
-    "title": "剪映专业版",
-    "type": "软件",
-    "tags": [
-      "视频剪辑",
-      "中文",
-      "Win/Mac"
-    ],
-    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/jianying.svg",
-    "description": "国民级视频剪辑工具，AI 字幕自动生成、海量素材模板，小白也能快速出片。",
-    "date": "2026-07-22",
-    "version": "v6.0 专业版",
-    "platform": "Windows / macOS",
-    "language": "简体中文",
-    "size": "1.6 GB",
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_jianying"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_jianying"
-      }
-    }
-  },
-  {
-    "id": "020704",
-    "title": "Blender 4.2",
-    "type": "软件",
-    "tags": [
-      "3D建模",
-      "开源免费",
-      "Win/Mac"
-    ],
-    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/blender.svg",
-    "description": "全球最流行的开源 3D 创作套件，涵盖建模、雕刻、动画、渲染全流程。",
-    "date": "2026-07-21",
-    "version": "4.2 LTS",
-    "platform": "Windows / macOS / Linux",
-    "language": "简体中文 / English",
-    "size": "380 MB",
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_blender"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_blender"
-      }
-    }
-  },
-  {
-    "id": "020705",
-    "title": "Adobe Premiere Pro 2026",
+    "title": "Adobe Premiere Pro 2023",
     "type": "软件",
     "tags": [
       "视频剪辑",
       "专业",
-      "Win/Mac"
+      "win"
     ],
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/premiere.svg",
     "description": "业界标准视频编辑软件，支持 8K 原生编辑、AI 语音转字幕，剪辑师的首选。",
-    "date": "2026-07-20",
-    "version": "2026 v25.0",
+    "date": "2026-08-04",
+    "size": "9.81 GB",
+    "downloads": {
+      "baidu": {
+        "link": "Adobe_Premiere_Pro_2023_23.5.0.56.rar 链接: https://pan.baidu.com/s/1rjHIq-0P8Ndujhg3I-LFnw?pwd=ahaj"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "version": "2023 V23.5.0.56",
     "platform": "Windows / macOS",
     "language": "简体中文 / English",
-    "size": "3.5 GB",
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_premiere"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_premiere"
-      }
-    }
-  },
-  {
-    "id": "020706",
-    "title": "Topaz Video AI",
-    "type": "软件",
-    "tags": [
-      "视频增强",
-      "AI",
-      "Win/Mac"
-    ],
-    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/topaz.svg",
-    "description": "AI 视频画质增强工具，低分辨率视频一键升级至 4K/8K，效果惊艳。",
-    "date": "2026-07-19",
-    "version": "v5.0",
-    "platform": "Windows / macOS",
-    "language": "English / 简体中文",
-    "size": "2.1 GB",
-    "downloads": {
-      "baidu": {
-        "link": "https://pan.baidu.com/s/1example_topaz"
-      },
-      "quark": {
-        "link": "https://pan.quark.cn/s/example_topaz"
-      }
-    }
+    "id": "020705"
   },
   {
     "title": "美国队长",
@@ -818,6 +685,219 @@ var resources = [
     "format": "MP4",
     "clips": [],
     "id": "010805"
+  },
+  {
+    "title": "钢铁侠2",
+    "type": "电影",
+    "tags": [
+      "4K",
+      "漫威",
+      "动作",
+      "战斗"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/钢铁侠2.jpg",
+    "description": "托尼深陷钯元素中毒危机，同时面对宿敌复仇，逐步揭开父辈遗留的秘密。",
+    "date": "2026-08-04",
+    "size": "6.34 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1vDmiVKRjImDI0YO1P3U1JA?pwd=w5mj"
+      },
+      "quark": {
+        "link": "https://pan.quark.cn/s/570b21b306f8?pwd=t1BC"
+      }
+    },
+    "resolution": "4K",
+    "subtitle": "中英双语",
+    "format": "MP4",
+    "clips": [],
+    "id": "010806"
+  },
+  {
+    "title": "毒液2：屠杀开始",
+    "type": "电影",
+    "tags": [
+      "4K",
+      "科幻",
+      "漫威",
+      "动作",
+      "反英雄"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/毒液2.jpg",
+    "description": "埃迪与毒液继续共生，遭遇拥有更强力量的共生体屠杀，展开宿命对决。",
+    "date": "2026-08-04",
+    "size": "4.48 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1kCX_ro7KwfL5wsu_uKrvJw?pwd=axhe"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
+    "subtitle": "中英双语",
+    "format": "MP4",
+    "clips": [],
+    "id": "010807"
+  },
+  {
+    "title": "美国队长3：内战",
+    "type": "电影",
+    "tags": [
+      "4K",
+      "漫威",
+      "动作",
+      "战斗"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/美国队长3.jpg",
+    "description": "索科维亚协议引发理念冲突，复仇者联盟分裂，美队与钢铁侠阵营对立开战。",
+    "date": "2026-08-04",
+    "size": "1.48 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1pY1a5O3J5AgnDv3LcNuJvQ?pwd=86cp"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "1080P",
+    "subtitle": "中英双语",
+    "format": "MP4",
+    "clips": [],
+    "id": "010808"
+  },
+  {
+    "title": "金刚狼2",
+    "type": "电影",
+    "tags": [
+      "4K",
+      "科幻",
+      "漫威",
+      "战斗"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/金刚狼2.jpg",
+    "description": "金刚狼远赴日本，卷入豪门阴谋，被迫直面永生带来的痛苦与生死考验。",
+    "date": "2026-08-04",
+    "size": "2.73 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1UuVHCeY9Qs7_DDMYWoXUJg?pwd=ir6j"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
+    "subtitle": "中英双语",
+    "format": "MP4",
+    "clips": [],
+    "id": "010809"
+  },
+  {
+    "title": "复仇者联盟2：奥创纪元",
+    "type": "电影",
+    "tags": [
+      "4K",
+      "漫威",
+      "科幻",
+      "热血",
+      "动作",
+      "战斗"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/复仇者联盟2.jpg",
+    "description": "托尼打造人工智能奥创自保，不料奥创意图消灭人类，复仇者集结全力阻止灾难。",
+    "date": "2026-08-04",
+    "size": "2.70 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1lxODgBfJRfIao1ERhAslxQ?pwd=3cjy"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
+    "subtitle": "中英双语",
+    "format": "MP4",
+    "clips": [],
+    "id": "010810"
+  },
+  {
+    "title": "哈利波特与魔法石",
+    "type": "电影",
+    "tags": [
+      "4K",
+      "科幻",
+      "热血",
+      "冒险"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/哈利波特与魔法石.jpg",
+    "description": "",
+    "date": "2026-08-04",
+    "size": "5.05 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1VYCqTCMtXLB2YVT4Vu4Mcg?pwd=4rga"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
+    "subtitle": "中英双语",
+    "format": "MP4",
+    "clips": [],
+    "id": "010811"
+  },
+  {
+    "title": "蜘蛛侠：英雄归来",
+    "type": "电影",
+    "tags": [
+      "4K",
+      "漫威",
+      "动作",
+      "战斗"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/蜘蛛侠：英雄归来.jpg",
+    "description": "内战结束后，少年彼得・帕克一边兼顾高中日常，一边渴望证明自己，追查依靠外星残骸制造武器的反派秃鹫，在钢铁侠的引导下领悟英雄真正的意义。",
+    "date": "2026-08-04",
+    "size": "5.42 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1UDovWmBD3zvHDIRQTtmAfw?pwd=qbhv"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
+    "subtitle": "中英双语",
+    "format": "MP4",
+    "clips": [],
+    "id": "010812"
+  },
+  {
+    "title": "AE\\PR插件包（打包中）",
+    "type": "软件",
+    "tags": [],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/无.png",
+    "description": "",
+    "date": "2026-08-04",
+    "size": "0GB",
+    "downloads": {
+      "baidu": {
+        "link": ""
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "version": "",
+    "platform": "Windows",
+    "language": "简体中文",
+    "id": "020801"
   }
 ];
 
@@ -972,21 +1052,11 @@ var tutorials = [
 var bannerSlides = [
   {
     "type": "announcement",
-    "title": "8月1日更新公告",
+    "title": "8月4日更新公告",
     "bg": "linear-gradient(135deg, #0D47A1 0%, #1565C0 40%, #1E88E5 100%)",
-    "icon": "📢",
-    "body": "1.完善反馈页功能，对于反馈我们会第一时间反馈并更新内容\n2.修复ui显示异常bug\n3.新增《千与千寻》《寻梦环游记》等影视作品",
+    "icon": "🎊",
+    "body": "💐超级站上线💐\n网站已经正式投入使用，但如你所见资源真的很少，我们会每天更新新的影片素材，如果您有想获取的资源可以通过反馈进行反馈说明，或者加入我们的🐧交流群：1045106889.\n站内所有资源以及素材是剪辑片段，供大家自行学习使用的！！！",
     "subtitle": "本站资源仅供学习交流，所有内容为剪辑后的影视素材片段，非完整原片。请于下载后 24 小时内删除。"
-  },
-  {
-    "type": "movie",
-    "badge": "🔥 典藏推荐",
-    "title": "复仇者联盟3：无限战争",
-    "description": "灭霸降临！漫威十年布局巅峰之战，IMAX 4K HDR 高码率压制",
-    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/复仇者联盟3.png",
-    "link": "detail.html?id=010702",
-    "bg": "linear-gradient(135deg, #1A237E 0%, #4A148C 100%)",
-    "endColor": "#4A148C"
   },
   {
     "type": "movie",
@@ -1002,10 +1072,10 @@ var bannerSlides = [
 
 var ADMIN_PASSWORD_HASH = '113edf2758cc44d6db239987e2ce4aacea5affb9dd35b0c352449b6c1826cfcb';
 
-/* 教程可见性（后台可切换） */
-var TUTORIALS_VISIBLE = true;
+/* 教程可见性 */
+var TUTORIALS_VISIBLE = false;
 
-/* ===== 加载后台缓存数据（localStorage 覆盖默认值）===== */
+/* ===== 加载后台缓存数据 ===== */
 (function() {
   var r = localStorage.getItem('admin_res_v3');
   if (r) { try { var a = JSON.parse(r); resources.length = 0; a.forEach(function(x) { resources.push(x); }); } catch(e) {} }
