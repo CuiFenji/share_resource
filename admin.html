@@ -155,7 +155,7 @@
        ================================================================ */
 
     /* ----- 1. 数据持久化 ----- */
-    var SK_R = 'admin_res_v3', SK_T = 'admin_tut_v3', SK_B = 'admin_banner_v3';
+    var SK_R = 'admin_res_v4', SK_T = 'admin_tut_v4', SK_B = 'admin_banner_v4';
 
     // 默认广告栏数据
     var defaultBanners = [
@@ -209,7 +209,7 @@
     }
 
     /* 教程可见性切换 */
-    var TUT_VIS_KEY = 'admin_tut_visible_v3';
+    var TUT_VIS_KEY = 'admin_tut_visible_v4';
     function isTutVisible() { return localStorage.getItem(TUT_VIS_KEY) !== '0'; }
     function updateTutToggleBtn() {
       var btn = document.getElementById('tutToggleBtn');
@@ -554,7 +554,7 @@
     function exportData() {
       var bnJSON = JSON.stringify(banners, null, 2);
       var tutVis = (typeof TUTORIALS_VISIBLE !== 'undefined') ? TUTORIALS_VISIBLE : true;
-      var loadIIFE = '\n/* ===== 加载后台缓存数据 ===== */\n(function() {\n  var r = localStorage.getItem(\'admin_res_v3\');\n  if (r) { try { var a = JSON.parse(r); resources.length = 0; a.forEach(function(x) { resources.push(x); }); } catch(e) {} }\n  var t = localStorage.getItem(\'admin_tut_v3\');\n  if (t) { try { var b = JSON.parse(t); tutorials.length = 0; b.forEach(function(x) { tutorials.push(x); }); } catch(e) {} }\n  var bn = localStorage.getItem(\'admin_banner_v3\');\n  if (bn) { try { var bnArr = JSON.parse(bn); bannerSlides.length = 0; bnArr.forEach(function(x) { bannerSlides.push(x); }); } catch(e) {} }\n  var tv = localStorage.getItem(\'admin_tut_visible_v3\');\n  if (tv === \'0\') TUTORIALS_VISIBLE = false;\n})();\n';
+      var loadIIFE = '\n/* ===== 加载后台缓存数据 ===== */\n(function() {\n  var r = localStorage.getItem(\'admin_res_v4\');\n  if (r) { try { var a = JSON.parse(r); resources.length = 0; a.forEach(function(x) { resources.push(x); }); } catch(e) {} }\n  var t = localStorage.getItem(\'admin_tut_v4\');\n  if (t) { try { var b = JSON.parse(t); tutorials.length = 0; b.forEach(function(x) { tutorials.push(x); }); } catch(e) {} }\n  var bn = localStorage.getItem(\'admin_banner_v4\');\n  if (bn) { try { var bnArr = JSON.parse(bn); bannerSlides.length = 0; bnArr.forEach(function(x) { bannerSlides.push(x); }); } catch(e) {} }\n  var tv = localStorage.getItem(\'admin_tut_visible_v4\');\n  if (tv === \'0\') TUTORIALS_VISIBLE = false;\n})();\n';
       var content = '/* ============================================================\n   超级站 — 数据文件\n   ⚠️ 本文件由后台管理系统自动生成，部署前请人工审核内容安全性\n   ============================================================ */\n\nvar resources = ' + JSON.stringify(resources, null, 2) + ';\n\nvar tutorials = ' + JSON.stringify(tutorials, null, 2) + ';\n\n/* 横幅轮播数据 */\nvar bannerSlides = ' + bnJSON + ';\n\nvar ADMIN_PASSWORD_HASH = \'' + ADMIN_PASSWORD_HASH + '\';\n\n/* 教程可见性 */\nvar TUTORIALS_VISIBLE = ' + tutVis + ';\n' + loadIIFE;
       var blob = new Blob([content], { type: 'application/javascript;charset=utf-8' });
       var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'data.js';

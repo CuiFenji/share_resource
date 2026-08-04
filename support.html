@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="超级站 — 为爱发电">
+  <title>为爱发电 — 超级站</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .support-page { padding-top: 120px; padding-bottom: var(--space-2xl); background: var(--color-bg); min-height: 100vh; }
+    .support-container { max-width: 800px; margin: 0 auto; padding: 0 var(--space-md); }
+    .support-hero { text-align: center; margin-bottom: var(--space-xl); }
+    .support-hero h1 { font-size: 32px; font-weight: 700; margin-bottom: var(--space-xs); }
+    .support-hero p { color: var(--color-text-secondary); font-size: 16px; }
+
+    .support-cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+
+    .support-card {
+      background: var(--color-white); border: 1px solid var(--color-border);
+      border-radius: var(--radius-md); box-shadow: var(--shadow-card); padding: var(--space-lg); text-align: center;
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    }
+    .support-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .support-card-icon { font-size: 48px; margin-bottom: var(--space-sm); }
+    .support-card h2 { font-size: 22px; font-weight: 600; margin-bottom: var(--space-sm); color: var(--color-text); }
+    .support-card p { color: var(--color-text-secondary); font-size: 14px; line-height: 1.8; margin-bottom: var(--space-sm); }
+
+    .contact-info { text-align: left; display: inline-block; margin: var(--space-sm) 0; }
+    .contact-info .ci-row { display: flex; align-items: center; gap: var(--space-sm); padding: 6px 0; font-size: 14px; color: var(--color-text); }
+    .contact-info .ci-icon { font-size: 18px; width: 28px; text-align: center; }
+
+    .btn-disabled { display: inline-block; padding: 10px 28px; border-radius: var(--radius-sm); background: var(--color-bg-alt); color: var(--color-text-secondary); border: 1px solid var(--color-border); font-size: 14px; font-family: var(--font-family); cursor: pointer; transition: all var(--transition-fast); }
+    .btn-disabled:hover { background: #FEF3C7; color: #92400E; border-color: #F59E0B; }
+
+    .coming-soon { display: none; margin-top: var(--space-sm); padding: 8px 16px; background: #FEF3C7; color: #92400E; border-radius: var(--radius-sm); font-size: 13px; }
+    .coming-soon.show { display: inline-block; }
+
+    @media (max-width: 768px) {
+      .support-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">
+      <span class="brand-icon">🎬</span>
+      <span>超级站</span>
+    </a>
+    <ul class="navbar-links">
+      <li><a href="index.html">主页</a></li>
+      <li><a href="resources.html">资源</a></li>
+      <li><a href="tutorials.html">教程</a></li>
+      <li><a href="support.html">为爱发电</a></li>
+      <li><a href="feedback.html">反馈问题</a></li>
+    </ul>
+  </nav>
+
+  <section class="support-page">
+    <div class="support-container">
+      <div class="support-hero fade-in-up">
+        <h1>💖 为爱发电</h1>
+        <p>本站为个人独立运营，你的支持是我持续更新的动力</p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="support-cards">
+        <!-- 模块 1：加入我们 -->
+        <div class="support-card fade-in-up delay-1">
+          <div class="support-card-icon">🤝</div>
+          <h2>加入我们</h2>
+          <p>如果您想参与我们的工作，可以联系我们</p>
+          <div class="contact-info">
+            <div class="ci-row"><span class="ci-icon">📧</span> VX :yao_chennn</div>
+            <div class="ci-row"><span class="ci-icon">💬</span> Q群：1045106889</div>
+            <div class="ci-row"><span class="ci-icon">🌐</span> 备注：加入超级站</div>
+          </div>
+        </div>
+
+        <!-- 模块 2：投稿素材 -->
+        <div class="support-card fade-in-up delay-2">
+          <div class="support-card-icon">📦</div>
+          <h2>投稿素材</h2>
+          <p>分享你的影视素材片段，一起丰富资源库</p>
+          <button class="btn-disabled" onclick="showComingSoon(this)">点击投稿</button>
+          <div class="coming-soon" id="comingSoon">🚧 暂未开放，敬请期待</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <ul class="footer-links">
+        <li><a href="index.html">主页</a></li>
+        <li><a href="resources.html">资源</a></li>
+        <li><a href="tutorials.html">教程</a></li>
+        <li><a href="support.html">为爱发电</a></li>
+        <li><a href="feedback.html">反馈问题</a></li>
+      </ul>
+      <p class="footer-copyright">© 2026 超级站 — 本站资源仅供学习交流，请于下载后 24 小时内删除</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" title="回到顶部">↑</button>
+
+  <script src="js/main.js"></script>
+  <script>
+    function showComingSoon(btn) {
+      btn.style.display = 'none';
+      var el = document.getElementById('comingSoon');
+      el.classList.add('show');
+    }
+  </script>
+</body>
+</html>

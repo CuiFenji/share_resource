@@ -271,6 +271,8 @@
 
     @media (max-width: 768px) {
       .banner-carousel { height: 240px; }
+      .banner-slide.announcement { overflow-y: auto; justify-content: flex-start; padding: var(--space-sm) var(--space-md); }
+      .banner-ann-body { font-size: 14px; display: block; text-align: left; }
       .banner-slide.movie { justify-content: center; }
       .banner-text { width: 100%; max-width: none; padding: var(--space-sm) var(--space-md); text-align: center; align-items: center; }
       .banner-text h2 { font-size: 18px; }
@@ -337,6 +339,8 @@
     .software-mode .resource-card {
       margin-bottom: 0;
       max-width: none;
+      min-height: 200px;
+      height: 100%;
     }
 
     @media (max-width: 640px) {
@@ -681,7 +685,8 @@
       <li><a href="index.html">主页</a></li>
       <li><a href="resources.html">资源</a></li>
       <li><a href="tutorials.html">教程</a></li>
-      <li><a href="feedback.html">反馈问题</a></li>
+      <li><a href="support.html">为爱发电</a></li>
+        <li><a href="feedback.html">反馈问题</a></li>
     </ul>
   </nav>
 
@@ -746,7 +751,8 @@
         <li><a href="index.html">主页</a></li>
         <li><a href="resources.html">资源</a></li>
         <li><a href="tutorials.html">教程</a></li>
-      <li><a href="feedback.html">反馈问题</a></li>
+      <li><a href="support.html">为爱发电</a></li>
+        <li><a href="feedback.html">反馈问题</a></li>
       </ul>
       <p class="footer-copyright">
         © 2026 超级站 — 本站资源仅供学习交流，请于下载后 24 小时内删除
@@ -999,5 +1005,3 @@
       if (e.key === 'Escape') closeDownloadModal();
     });
   </script>
-</body>
-</html>
