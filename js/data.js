@@ -5,39 +5,6 @@
 
 var resources = [
   {
-    "title": "复仇者联盟（正在打包）",
-    "type": "电影",
-    "tags": [
-      "1080P",
-      "中字",
-      "科幻",
-      "漫威"
-    ],
-    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/复仇者联盟1.png",
-    "description": "漫威宇宙第一阶段巅峰集结，钢铁侠、美队、雷神等超级英雄首次联手保卫地球。",
-    "date": "2026-07-24",
-    "size": "15.2 GB",
-    "downloads": {
-      "baidu": {
-        "link": ""
-      },
-      "quark": {
-        "link": ""
-      }
-    },
-    "resolution": "1080P BluRay",
-    "subtitle": "中英双语",
-    "format": "MKV",
-    "clips": [
-      "纽约大战外星军团",
-      "钢铁侠核弹冲刺",
-      "浩克暴揍洛基",
-      "黑寡妇vs鹰眼",
-      "美队街头肉搏"
-    ],
-    "id": "010701"
-  },
-  {
     "title": "复仇者联盟3：无限战争（正在打包）",
     "type": "电影",
     "tags": [
@@ -335,7 +302,7 @@ var resources = [
     "id": "010711"
   },
   {
-    "title": "声之形（正在打包）",
+    "title": "声之形",
     "type": "电影",
     "tags": [
       "1080P",
@@ -345,19 +312,19 @@ var resources = [
     ],
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/声之形.png",
     "description": "京阿尼感人至深的剧场版，关于救赎、理解与沟通的青春物语。",
-    "date": "2026-07-13",
-    "size": "9.3 GB",
+    "date": "2026-08-06",
+    "size": "1.67 GB",
     "downloads": {
       "baidu": {
-        "link": ""
+        "link": "https://pan.baidu.com/s/1buSGrlgpcwXZjgHqd9zwQA?pwd=ruiu"
       },
       "quark": {
         "link": ""
       }
     },
-    "resolution": "1080P BluRay",
+    "resolution": "4K",
     "subtitle": "中日双语",
-    "format": "MKV",
+    "format": "MP4",
     "clips": [
       "教室手语交流初遇",
       "桥上坠落救援",
@@ -538,7 +505,7 @@ var resources = [
     "size": "9.81 GB",
     "downloads": {
       "baidu": {
-        "link": "Adobe_Premiere_Pro_2023_23.5.0.56.rar 链接: https://pan.baidu.com/s/1rjHIq-0P8Ndujhg3I-LFnw?pwd=ahaj"
+        "link": "https://pan.baidu.com/s/1rjHIq-0P8Ndujhg3I-LFnw?pwd=ahaj"
       },
       "quark": {
         "link": ""
@@ -879,25 +846,277 @@ var resources = [
     "id": "010812"
   },
   {
-    "title": "AE\\PR插件包（打包中）",
+    "title": "AE\\PR插件合集",
     "type": "软件",
-    "tags": [],
+    "tags": [
+      "插件",
+      "AE",
+      "PR",
+      "预设",
+      "工具"
+    ],
     "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/无.png",
     "description": "",
     "date": "2026-08-04",
-    "size": "0GB",
+    "size": "4.3 GB",
     "downloads": {
       "baidu": {
         "link": ""
       },
       "quark": {
-        "link": ""
+        "link": "https://pan.quark.cn/s/2f485d242b99?pwd=z8cN"
       }
     },
     "version": "",
     "platform": "Windows",
     "language": "简体中文",
     "id": "020801"
+  },
+  {
+    "title": "金刚狼1",
+    "type": "电影",
+    "tags": [
+      "4K",
+      "战斗",
+      "动作"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/金刚狼.jpg",
+    "description": "",
+    "date": "2026-08-06",
+    "size": "2.64 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1f2fxjqeiWICChKKgZ8Oubg?pwd=fnxm"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
+    "subtitle": "中英双语",
+    "format": "MP4",
+    "clips": [],
+    "id": "010813"
+  },
+  {
+    "title": "复仇者联盟1",
+    "type": "电影",
+    "tags": [
+      "4K",
+      "科幻",
+      "漫威",
+      "动作",
+      "战斗"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/复仇者联盟1.png",
+    "description": "",
+    "date": "2026-08-06",
+    "size": "4.19 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1JYbK6Rhi3gpgz00RknzIbQ?pwd=4kew"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
+    "subtitle": "中英双语",
+    "format": "MP4",
+    "clips": [],
+    "id": "010814"
+  },
+  {
+    "title": "哈利波特与密室",
+    "type": "电影",
+    "tags": [
+      "4K",
+      "热血",
+      "冒险",
+      "魔法",
+      "奇幻"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/哈利波特与密室.jpg",
+    "description": "",
+    "date": "2026-08-06",
+    "size": "6.45 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1QQLBiP0tkMWIF9Ny9sXD9w?pwd=tauf"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
+    "subtitle": "中英双语",
+    "format": "MP4",
+    "clips": [],
+    "id": "010815"
+  },
+  {
+    "title": "哈利波特与阿兹卡班的囚徒",
+    "type": "电影",
+    "tags": [
+      "4K",
+      "热血",
+      "动作",
+      "奇幻",
+      "冒险",
+      "魔法"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/哈利波特与阿兹卡班的囚徒.jpg",
+    "description": "",
+    "date": "2026-08-06",
+    "size": "7.46 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1nfrNjid1rhltTkBADcalWA?pwd=jmc3"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
+    "subtitle": "中英双语",
+    "format": "MP4",
+    "clips": [],
+    "id": "010816"
+  },
+  {
+    "title": "蜘蛛侠：英雄无归",
+    "type": "电影",
+    "tags": [
+      "4K",
+      "漫威",
+      "动作",
+      "战斗"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/蜘蛛侠：英雄无归.jpg",
+    "description": "",
+    "date": "2026-08-06",
+    "size": "6.87 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1qIRBIcOGmt6f6VnbHJbUxA?pwd=8p1w"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
+    "subtitle": "中英双语",
+    "format": "MP4",
+    "clips": [],
+    "id": "010817"
+  },
+  {
+    "title": "银河护卫队系列",
+    "type": "电影",
+    "tags": [
+      "4K",
+      "科幻",
+      "漫威",
+      "热血",
+      "动作",
+      "奇幻",
+      "冒险"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/银河护卫队2.jpg",
+    "description": "",
+    "date": "2026-08-06",
+    "size": "6.36 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/11fdYbCmylYl8AcfSCjY8_g?pwd=b2y4"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "resolution": "4K",
+    "subtitle": "中英双语",
+    "format": "MP4",
+    "clips": [],
+    "id": "010818"
+  },
+  {
+    "title": "indexTTS2.0音色克隆（一键启动器）",
+    "type": "软件",
+    "tags": [
+      "音频处理",
+      "中文版",
+      "开源免费",
+      "AI"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/无.jpg",
+    "description": "B站开源音色参考复制模型，国内最先进的音色参考。",
+    "date": "2026-08-06",
+    "size": "8.99 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/10z9E_qz59XZpJ0qyquMfsw?pwd=nabj"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "version": "2.0",
+    "platform": "Windows",
+    "language": "简体中文",
+    "id": "020802"
+  },
+  {
+    "title": "OminVoice音色克隆(本地部署)",
+    "type": "软件",
+    "tags": [
+      "音频处理",
+      "中文版",
+      "开源免费",
+      "AI"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/无.jpg",
+    "description": "将小米出品音色克隆模型克隆到本地电脑，支持一键启动，根据自身电脑CPU和显卡决定是否下载！",
+    "date": "2026-08-06",
+    "size": "7.92 GB",
+    "downloads": {
+      "baidu": {
+        "link": "https://pan.baidu.com/s/1fsEMHqQiTbXXvsrYSV5w2A?pwd=ivvp"
+      },
+      "quark": {
+        "link": ""
+      }
+    },
+    "version": "2.0",
+    "platform": "Windows",
+    "language": "简体中文",
+    "id": "020803"
+  },
+  {
+    "title": "Adobe Animate 2024",
+    "type": "软件",
+    "tags": [
+      "视频剪辑",
+      "动画制作",
+      "专业",
+      "中文版"
+    ],
+    "cover": "https://cdn.jsdelivr.net/gh/CuiFenji/sharephoto@main/无.png",
+    "description": "",
+    "date": "2026-08-06",
+    "size": "2.78 GB",
+    "downloads": {
+      "baidu": {
+        "link": ""
+      },
+      "quark": {
+        "link": "https://pan.quark.cn/s/70241cdd8974?pwd=6K8B"
+      }
+    },
+    "version": "v24.0.0.305",
+    "platform": "Windows",
+    "language": "简体中文",
+    "id": "020804"
   }
 ];
 
@@ -1052,11 +1271,11 @@ var tutorials = [
 var bannerSlides = [
   {
     "type": "announcement",
-    "title": "8月4日更新公告",
-    "bg": "linear-gradient(135deg, #0D47A1 0%, #1565C0 40%, #1E88E5 100%)",
-    "icon": "🎊",
-    "body": "💐超级站上线💐\n网站已经正式投入使用，但如你所见资源真的很少，我们会每天更新新的影片素材，如果您有想获取的资源可以通过反馈进行反馈说明，或者加入我们的🐧交流群：1045106889.\n站内所有资源以及素材是剪辑片段，供大家自行学习使用的！！！",
-    "subtitle": "本站资源仅供学习交流，所有内容为剪辑后的影视素材片段，非完整原片。请于下载后 24 小时内删除。"
+    "icon": "🎬",
+    "title": "超级站",
+    "body": "精选影视素材片段 · 高清画质 · 双语字幕 · 持续更新",
+    "subtitle": "本站资源仅供学习交流，所有内容为剪辑后的影视素材片段，非完整原片。请于下载后 24 小时内删除。",
+    "bg": "linear-gradient(135deg, #0D47A1 0%, #1565C0 40%, #1E88E5 100%)"
   },
   {
     "type": "movie",
